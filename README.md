@@ -61,19 +61,18 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 ---
 
-# Sponsorname contest details
-- Total Prize Pool: Sum of below awards
-  - HM awards: XXX XXX (Notion Field: Main Pool)
-  - QA report awards: XXX XXX (Notion Field: QA Pool, usually 10% of total award pool)
-  - Gas report awards: XXX XXX (Notion Field: Gas Pool, usually 5% of total award pool)
-  - Judge + presort awards: XXX XXX (Notion Field: Judge Fee)
+# Popcorn DAO contest details
+- Total Prize Pool: $90,500 USDC
+  - HM awards: $63,750 USDC (Notion Field: Main Pool)
+  - QA report awards: $7,500 USDC (Notion Field: QA Pool, usually 10% of total award pool)
+  - Gas report awards: $3,750 USDC (Notion Field: Gas Pool, usually 5% of total award pool)
+  - Judge + presort awards: $15,000 USDC (Notion Field: Judge Fee)
   - Scout awards: $500 USDC (this field doesn't exist in Notion yet, usually $500 USDC)
-  - (this line can be removed if there is no mitigation) Mitigation review contest: XXX XXX (*Opportunity goes to top X certified wardens based on placement in this contest.*)
 - Join [C4 Discord](https://discord.gg/code4rena) to register
-- Submit findings [using the C4 form](https://code4rena.com/contests/YYYY-MM-sponsorName-contest/submit)
+- Submit findings [using the C4 form](https://code4rena.com/contests/2023-01-popcorn-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts TBD XXX XXX XX 20:00 UTC
-- Ends TBD XXX XXX XX 20:00 UTC
+- Starts January 31, 2023 20:00 UTC
+- Ends February 07, 2023 20:00 UTC
 
 ## C4udit / Publicly Known Issues
 
