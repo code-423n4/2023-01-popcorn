@@ -15,11 +15,10 @@
 
 This protocols goal is to make vault creation easy, safe and all without compromising on flexibility. It allows anyone to spin up their own Yearn in minutes. <br/>
 **Vaults** can be created permissionlessly based on any underlying protocol and execute arbitrary strategies. 
-The factory uses only endorsed **Adapters** and **Strategies** with minimal user input to reduce complexity for a creator and ensure safety of the created clones. It gives vault creators a quick and easy way to spin up any **Vault** they need and end users the guarantee that the created **Vault** will be safe. For some more context checkout the [whitepaper](./WhitePaper.pdf)
+The factory uses only endorsed **Adapters** and **Strategies** with minimal user input to reduce complexity for a creator and ensure safety of the created clones. It gives vault creators a quick and easy way to spin up any **Vault** they need and end users the guarantee that the created **Vault** will be safe. For some more context checkout the [whitepaper](https://github.com/code-423n4/2023-01-popcorn//blob/main/WhitePaper.pdf)
 
 The protocol consists of 2 parts. The Vault Factory and the actual Vaults and Adapters.
-<br/>
-<br/>
+
 ## Vault Factory
 The Vault Factory part consists of a mix of Registry and Execution contracts. All contracts are immutable but execution contracts can be swapped out if requirements change or additional functionality should be added.
 
@@ -33,85 +32,124 @@ The Vault Factory part consists of a mix of Registry and Execution contracts. Al
 -   **AdminProxy:** This contract owns any clone and most infrastructure contracts. Its used to make ownership transfers easy in case the **VaultController** should get updated. This contracts forwards almost all calls from the **VaultController**.
 
 **Note:** This system ensures that minimal user input is needed and executions are handled with valid inputs and in the correct order. The goal is to minimize human error and the attack surface. A lot of configurations for **Adapters** and **Strategies** is very protocol specific. These are therefore mainly handled in the implementations itself. **Adapters** should receive all there critical data from an on-chain registry of the underlying protocol. As its nearly impossible to tell otherwise if the passed in configuration is malicious. There is still a need for some kind of governance to ensure that only correct and safe **Templates** are added and dangerous assets get rejected. 
-<br/>
-
-![vaultInfraFlow](./vaultInfraFlow.PNG)
-
-<br/>
-<br/>
-
+![vaultInfraFlow](https://github.com/code-423n4/2023-01-popcorn//blob/main/vaultInfraFlow.PNG)
 ## Vault, Adapter & Strategy
 -   **Vault:** A simple ERC-4626 implementation which allows the creator to add various types of fees and interact with other protocols via any ERC-4626 compliant **Adapter**. Fees and **Adapter** can be changed by the creator after a ragequit period.
 -   **Adapter:** An immutable wrapper for existing contract to allow for ERC-4626 compatability. Optionally adapters can utilize a **Strategy** to perform various additional tasks besides simply depositing and withdrawing token from the wrapped protocol. PopcornDAO will collect management fees via these **Adapter**.
 -   **Strategy:** An arbitrary module to perform various tasks from compouding, leverage or simply forwarding rewards. Strategies can be attached to an **Adapter** to give it additionaly utility.
 
-![vaultFlow](./vaultFlow.PNG)
-
-<br/>
-<br/>
+![vaultFlow](https://github.com/code-423n4/2023-01-popcorn//blob/main/vaultFlow.PNG)
 
 ## Utility Contracts
 Additionally we included 2 utility contracts that are used alongside the vault system.
 -   **MultiRewardStaking:** A simple ERC-4626 implementation of a staking contract. A user can provide an asset and receive rewards in multiple tokens. Adding these rewards is done by the contract owner. They can be either paid out over time or instantly. Rewards can optionally also be vested on claim.
 -   **MultiRewardEscrow:** Allows anyone to lock up and vest arbitrary tokens over a given time. Will be used mainly in conjuction with **MultiRewardStaking**.
 
-<br/>
-<br/>
 
-# Scope
+## Scope
+### Files in scope
+|File|[SLOC](#nowhere "(nSLOC, SLOC, Lines)")|Description and [Coverage](#nowhere "(Lines hit / Total)")|Libraries|
+|:-|:-:|:-|:-|
+|_Contracts (16)_|
+|[src/utils/EIP165.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/EIP165.sol)|[4](#nowhere "(nSLOC:4, SLOC:4, Lines:8)")|Exposes the contract interface., &nbsp;&nbsp;-||
+|[src/vault/adapter/abstracts/OnlyStrategy.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/OnlyStrategy.sol)|[8](#nowhere "(nSLOC:8, SLOC:8, Lines:14)")|Abstract modifier for delegatecall., &nbsp;&nbsp;-||
+|[src/vault/AdminProxy.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/AdminProxy.sol)|[12](#nowhere "(nSLOC:8, SLOC:12, Lines:26)")|Proxy contract that owns a majority of contracts. Allows VaultController to call management functions., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:1 / Total:1)")||
+|[src/vault/adapter/abstracts/WithRewards.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/WithRewards.sol)|[12](#nowhere "(nSLOC:12, SLOC:12, Lines:24)")|Abstract for adapters with additional rewardTokens., &nbsp;&nbsp;[0.00%](#nowhere "(Hit:0 / Total:1)")||
+|[src/vault/CloneFactory.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/CloneFactory.sol)|[17](#nowhere "(nSLOC:17, SLOC:17, Lines:49)")|Creates arbitrary clones based on Templates., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:5 / Total:5)")| `openzeppelin-contracts/*`|
+|[src/vault/PermissionRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/PermissionRegistry.sol)|[24](#nowhere "(nSLOC:24, SLOC:24, Lines:58)")|Endorsement/Rejection registry for arbitrary addresses., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:8 / Total:8)")||
+|[src/vault/CloneRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/CloneRegistry.sol)|[29](#nowhere "(nSLOC:21, SLOC:29, Lines:68)")|Registers each newly created clone., &nbsp;&nbsp;[66.67%](#nowhere "(Hit:4 / Total:6)")||
+|[src/vault/VaultRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/VaultRegistry.sol)|[34](#nowhere "(nSLOC:34, SLOC:34, Lines:78)")|Registers all created Vaults and provides aditional metadata., &nbsp;&nbsp;[60.00%](#nowhere "(Hit:6 / Total:10)")||
+|[src/vault/DeploymentController.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/DeploymentController.sol)|[55](#nowhere "(nSLOC:47, SLOC:55, Lines:136)")|Bundles auxiliary contracts for easy interaction., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:13 / Total:13)")||
+|[src/vault/TemplateRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/TemplateRegistry.sol)|[57](#nowhere "(nSLOC:53, SLOC:57, Lines:126)")|Registry for clone Templates with additional metadata. Templates are used by the CloneFactory, &nbsp;&nbsp;[100.00%](#nowhere "(Hit:18 / Total:18)")||
+|[src/vault/adapter/yearn/YearnAdapter.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/yearn/YearnAdapter.sol)|[110](#nowhere "(nSLOC:83, SLOC:110, Lines:173)")|Wraps any Yearn Vault in a 4626-compliant interface. Uses AdapterBase., &nbsp;&nbsp;[96.43%](#nowhere "(Hit:27 / Total:28)")||
+|[src/utils/MultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardEscrow.sol) [🧮](#nowhere "Uses Hash-Functions")|[118](#nowhere "(nSLOC:112, SLOC:118, Lines:217)")|Allows vesting of arbitrary token over any time frame., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:42 / Total:42)")| `openzeppelin-contracts-upgradeable/*` `openzeppelin-contracts/*` `solmate/*`|
+|[src/vault/adapter/beefy/BeefyAdapter.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/beefy/BeefyAdapter.sol)|[163](#nowhere "(nSLOC:121, SLOC:163, Lines:240)")|Wraps any BeefyV6 Vault in a 4626-compliant interface. Uses AdapterBase., &nbsp;&nbsp;[80.85%](#nowhere "(Hit:38 / Total:47)")||
+|[src/utils/MultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardStaking.sol) [📤](#nowhere "Initiates ETH Value Transfer") [🧮](#nowhere "Uses Hash-Functions") [🔖](#nowhere "Handles Signatures: ecrecover") [Σ](#nowhere "Unchecked Blocks")|[311](#nowhere "(nSLOC:267, SLOC:311, Lines:503)")|Staking contract with one stakingToken and multiple rewardsToken. Rewards can be paid out instantly or over time., &nbsp;&nbsp;[100.00%](#nowhere "(Hit:110 / Total:110)")| `openzeppelin-contracts-upgradeable/*` `solmate/*`|
+|[src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol) [🧮](#nowhere "Uses Hash-Functions") [🔖](#nowhere "Handles Signatures: ecrecover") [Σ](#nowhere "Unchecked Blocks")|[426](#nowhere "(nSLOC:376, SLOC:426, Lines:730)")|4626-compliant Vault implementation. Uses Adapter for actual deposits and withdrawals. Allows creator to set fees., &nbsp;&nbsp;[90.00%](#nowhere "(Hit:108 / Total:120)")| `openzeppelin-contracts-upgradeable/*` `openzeppelin-contracts/*`|
+|[src/vault/VaultController.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/VaultController.sol) [🧮](#nowhere "Uses Hash-Functions")|[520](#nowhere "(nSLOC:467, SLOC:520, Lines:872)")|ManagementContract to create new clones, register and endorse Templates or call management functions., &nbsp;&nbsp;[98.87%](#nowhere "(Hit:175 / Total:177)")| `openzeppelin-contracts-upgradeable/*`|
+|_Abstracts (1)_|
+|[src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol) [👥](#nowhere "DelegateCall") [🧮](#nowhere "Uses Hash-Functions") [🔖](#nowhere "Handles Signatures: ecrecover") [Σ](#nowhere "Unchecked Blocks")|[405](#nowhere "(nSLOC:284, SLOC:405, Lines:696)")|4626-compliant abstract for all adapter implementations. Holds a majority of the business logic of each adapter., &nbsp;&nbsp;[95.65%](#nowhere "(Hit:88 / Total:92)")| `openzeppelin-contracts-upgradeable/*`|
+|_Interfaces (18)_|
+|[src/interfaces/IEIP165.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IEIP165.sol)|[4](#nowhere "(nSLOC:4, SLOC:4, Lines:6)")|-||
+|[src/interfaces/vault/IAdminProxy.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IAdminProxy.sol)|[5](#nowhere "(nSLOC:5, SLOC:5, Lines:10)")|-||
+|[src/interfaces/vault/IWithRewards.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IWithRewards.sol)|[5](#nowhere "(nSLOC:5, SLOC:5, Lines:10)")|-||
+|[src/interfaces/vault/ICloneFactory.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/ICloneFactory.sol)|[6](#nowhere "(nSLOC:6, SLOC:6, Lines:11)")|-||
+|[src/interfaces/vault/IStrategy.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IStrategy.sol)|[7](#nowhere "(nSLOC:7, SLOC:7, Lines:14)")|-||
+|[src/interfaces/vault/ICloneRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/ICloneRegistry.sol)|[10](#nowhere "(nSLOC:6, SLOC:10, Lines:16)")|-||
+|[src/interfaces/vault/IPermissionRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IPermissionRegistry.sol)|[11](#nowhere "(nSLOC:11, SLOC:11, Lines:19)")|-||
+|[src/interfaces/vault/IVaultRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IVaultRegistry.sol)|[16](#nowhere "(nSLOC:16, SLOC:16, Lines:30)")|-||
+|[src/vault/adapter/yearn/IYearn.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/yearn/IYearn.sol)|[18](#nowhere "(nSLOC:18, SLOC:18, Lines:34)")|Yearn Interfaces, &nbsp;&nbsp;-| `openzeppelin-contracts-upgradeable/*`|
+|[src/interfaces/vault/IAdapter.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IAdapter.sol)|[23](#nowhere "(nSLOC:19, SLOC:23, Lines:39)")|-||
+|[src/interfaces/vault/IDeploymentController.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IDeploymentController.sol)|[24](#nowhere "(nSLOC:20, SLOC:24, Lines:41)")|-||
+|[src/interfaces/vault/ITemplateRegistry.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/ITemplateRegistry.sol)|[25](#nowhere "(nSLOC:21, SLOC:25, Lines:45)")|-||
+|[src/interfaces/IMultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IMultiRewardEscrow.sol)|[26](#nowhere "(nSLOC:20, SLOC:26, Lines:43)")|-| `openzeppelin-contracts-upgradeable/*`|
+|[src/interfaces/vault/IERC4626.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IERC4626.sol)|[28](#nowhere "(nSLOC:28, SLOC:28, Lines:61)")|-| `openzeppelin-contracts-upgradeable/*`|
+|[src/vault/adapter/beefy/IBeefy.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/beefy/IBeefy.sol)|[31](#nowhere "(nSLOC:31, SLOC:31, Lines:57)")|Beefy Interfaces, &nbsp;&nbsp;-||
+|[src/interfaces/IMultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IMultiRewardStaking.sol)|[38](#nowhere "(nSLOC:26, SLOC:38, Lines:61)")|-||
+|[src/interfaces/vault/IVault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IVault.sol)|[48](#nowhere "(nSLOC:42, SLOC:48, Lines:97)")|-||
+|[src/interfaces/vault/IVaultController.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IVaultController.sol)|[64](#nowhere "(nSLOC:43, SLOC:64, Lines:104)")|-||
+|Total (over 35 files):| [2694](#nowhere "(nSLOC:2266, SLOC:2694, Lines:4716)") |[94.84%](#nowhere "Hit:643 / Total:678")|
 
 
-| Contract | SLOC | Purpose | Libraries used |  
-| ----------- | ----------- | ----------- | ----------- |
-| [src/interfaces/vault/IAdapter.sol](src/interfaces/vault/IAdapter.sol) | 23 |  |  |
-| [src/interfaces/vault/IAdminProxy.sol](src/interfaces/vault/IAdminProxy.sol) | 5 |  |  |
-| [src/interfaces/vault/ICloneFactory.sol](src/interfaces/vault/ICloneFactory.sol) | 6 |  |  |
-| [src/interfaces/vault/ICloneRegistry.sol](src/interfaces/vault/ICloneRegistry.sol) | 10 |  |  |
-| [src/interfaces/vault/IDeploymentController.sol](src/interfaces/vault/IDeploymentController.sol) | 24 |  |  |
-| [src/interfaces/vault/IERC4626.sol](src/interfaces/vault/IERC4626.sol) | 28 |  | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) |
-| [src/interfaces/vault/IPermissionRegistry.sol](src/interfaces/vault/IPermissionRegistry.sol) | 11 |  |  |
-| [src/interfaces/vault/IStrategy.sol](src/interfaces/vault/IStrategy.sol) | 7 | |  |
-| [src/interfaces/vault/ITemplateRegistry.sol](src/interfaces/vault/ITemplateRegistry.sol) | 25 |  |  |
-| [src/interfaces/vault/IVault.sol](src/interfaces/vault/IVault.sol) | 48 |  |  |
-| [src/interfaces/vault/IVaultController.sol](src/interfaces/vault/IVaultController.sol) | 64 |  | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) |
-| [src/interfaces/vault/IVaultRegistry.sol](src/interfaces/vault/IVaultRegistry.sol) | 16 |  |  |
-| [src/interfaces/vault/IWithRewards.sol](src/interfaces/vault/IWithRewards.sol) | 5 |  |  |
-| [src/interfaces/IEIP165.sol](src/interfaces/IEIP165.sol) | 4 |  |  |
-| [src/interfaces/IMultiRewardEscrow.sol](src/interfaces/IMultiRewardEscrow.sol) | 26 || [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) |
-| [src/interfaces/IMultiRewardStaking.sol](src/interfaces/IMultiRewardStaking.sol) | 38 |  | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) |
-| [src/utils/EIP165](src/utils/EIP165.sol) | 4 | Exposes the contract interface. |  |
-| [src/utils/MultiRewardEscrow.sol](src/utils/MultiRewardEscrow.sol) | 118 | Allows vesting of arbitrary token over any time frame. |  |
-| [src/utils/MultiRewardStaking.sol](src/utils/MultiRewardStaking.sol) | 311 | Staking contract with one stakingToken and multiple rewardsToken. Rewards can be paid out instantly or over time. |  |
-| [src/vault/adapter/abstracts/AdapterBase](src/vault/adapter/abstracts/AdapterBase.sol) | 403 | 4626-compliant abstract for all adapter implementations. Holds a majority of the business logic of each adapter.  | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) [oz-upgradable/tokens/ERC4626.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol) [oz-upgradable/tokens/IERC20Metadata.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/SafeERC20.sol) [oz-upgradable/tokens/SafeERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/token/ERC20/utils/SafeERC20Upgradeable.sol) [oz-upgradable/math/MathUpgradeable.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/utils/math/MathUpgradeable.sol) [oz-upgradable/security/PausableUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/PausableUpgradeable) [oz-upgradable/security/ReentrancyGuardUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/ReentrancyGuardUpgradeable)|
-| [src/vault/adapter/abstracts/OnlyStrategy.sol](src/vault/adapter/abstracts/OnlyStrategy.sol) | 12 | Abstract modifier for delegatecall. |  |
-| [src/vault/adapter/abstracts/WithRewards.sol](src/vault/adapter/abstracts/WithRewards.sol) | 8 | Abstract for adapters with additional rewardTokens. |  |
-| [src/vault/adapter/beefy/BeefyAdapter.sol](src/vault/adapter/beefy/BeefyAdapter.sol) | 163 | Wraps any BeefyV6 Vault in a 4626-compliant interface. Uses AdapterBase. | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) [oz-upgradable/tokens/ERC4626.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol) [oz-upgradable/tokens/IERC20Metadata.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/SafeERC20.sol) [oz-upgradable/tokens/SafeERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/token/ERC20/utils/SafeERC20Upgradeable.sol) [oz-upgradable/math/MathUpgradeable.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/utils/math/MathUpgradeable.sol) [oz-upgradable/security/PausableUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/PausableUpgradeable) |
-| [src/vault/adapter/beefy/IBeefy.sol](src/vault/adapter/beefy/IBeefy.sol) | 31 | Beefy Interfaces |  |
-| [src/vault/adapter/yearn/IYearn.sol](src/vault/adapter/yearn/IYearn.sol) | 18 | Yearn Interfaces |  |
-| [src/vault/adapter/yearn/YearnAdapter.sol](src/vault/adapter/yearn/YearnAdapter.sol) | 110 | Wraps any Yearn Vault in a 4626-compliant interface. Uses AdapterBase. | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) [oz-upgradable/tokens/ERC4626.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol) [oz-upgradable/tokens/IERC20Metadata.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/SafeERC20.sol) [oz-upgradable/tokens/SafeERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/token/ERC20/utils/SafeERC20Upgradeable.sol) [oz-upgradable/math/MathUpgradeable.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/utils/math/MathUpgradeable.sol) [oz-upgradable/security/PausableUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/PausableUpgradeable) |
-| [src/vault/AdminProxy.sol](src/vault/AdminProxy.sol) | 12 | Proxy contract that owns a majority of contracts. Allows `VaultController` to call management functions. |  |
-| [src/vault/CloneFactory.sol](src/vault/CloneFactory.sol) | 17 | Creates arbitrary clones based on `Templates`. | [oz/proxy/Clones.sol]([openzeppelin-contracts/proxy/Clones.sol](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/Clones.sol)) |
-| [src/vault/CloneRegistry.sol](src/vault/CloneRegistry.sol) | 29 | Registers each newly created clone. |  |
-| [src/vault/DeploymentController.sol](src/vault/DeploymentController.sol) | 55 | Bundles auxiliary contracts for easy interaction. |  |
-| [src/vault/PermissionRegistry.sol](src/vault/PermissionRegistry.sol) | 24 | Endorsement/Rejection registry for arbitrary addresses. |  |
-| [src/vault/TemplateRegistry.sol](src/vault/TemplateRegistry.sol) | 57 | Registry for clone `Templates` with additional metadata. `Templates` are used by the `CloneFactory` |  |
-| [src/vault/Vault.sol](src/vault/Vault.sol) | 426 | 4626-compliant Vault implementation. Uses Adapter for actual deposits and withdrawals. Allows creator to set fees. | [oz-upgradable/tokens/IERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/IERC20Upgradeable.sol) [oz-upgradable/tokens/ERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/ERC20Upgradeable.sol) [oz-upgradable/tokens/IERC20Metadata.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/extensions/SafeERC20.sol) [oz-upgradable/tokens/SafeERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/token/ERC20/token/ERC20/utils/SafeERC20Upgradeable.sol) [oz-upgradable/math/MathUpgradeable.sol](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/utils/math/MathUpgradeable.sol) [oz-upgradable/security/PausableUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/PausableUpgradeable) [oz-upgradable/security/ReentrancyGuardUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/security/ReentrancyGuardUpgradeable) |
-| [src/vault/VaultController.sol](src/vault/v.sol) | 520 | ManagementContract to create new clones, register and endorse `Templates` or call management functions. |  |
-| [src/vault/VaultRegistry.sol](src/vault/VaultRegistry.sol) | 34 | Registers all created `Vaults` and provides aditional metadata. |  |
+### All other source contracts (not in scope)
+|File|[SLOC](#nowhere "(nSLOC, SLOC, Lines)")|Description and [Coverage](#nowhere "(Lines hit / Total)")|Libraries|
+|:-|:-:|:-|:-|
+|_Contracts (5)_|
+|[src/vault/strategy/StrategyBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/StrategyBase.sol)|[16](#nowhere "(nSLOC:16, SLOC:16, Lines:25)")|[0.00%](#nowhere "(Hit:0 / Total:4)")||
+|[src/vault/strategy/RewardsClaimer.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/RewardsClaimer.sol)|[22](#nowhere "(nSLOC:22, SLOC:22, Lines:34)")|[0.00%](#nowhere "(Hit:0 / Total:9)")| `openzeppelin-contracts-upgradeable/*`|
+|[src/utils/Owned.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/Owned.sol)|[29](#nowhere "(nSLOC:29, SLOC:29, Lines:40)")|[100.00%](#nowhere "(Hit:7 / Total:7)")||
+|[src/utils/OwnedUpgradeable.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/OwnedUpgradeable.sol)|[30](#nowhere "(nSLOC:30, SLOC:30, Lines:42)")|[40.00%](#nowhere "(Hit:4 / Total:10)")| `openzeppelin-contracts-upgradeable/*`|
+|[src/vault/strategy/Pool2SingleAssetCompounder.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/Pool2SingleAssetCompounder.sol)|[47](#nowhere "(nSLOC:47, SLOC:47, Lines:67)")|[0.00%](#nowhere "(Hit:0 / Total:28)")| `openzeppelin-contracts-upgradeable/*`|
+|_Interfaces (5)_|
+|[src/interfaces/external/IWETH.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/external/IWETH.sol) [💰](#nowhere "Payable Functions")|[5](#nowhere "(nSLOC:5, SLOC:5, Lines:10)")|-||
+|[src/interfaces/IPausable.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IPausable.sol)|[6](#nowhere "(nSLOC:6, SLOC:6, Lines:12)")|-||
+|[src/interfaces/IOwned.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IOwned.sol)|[7](#nowhere "(nSLOC:7, SLOC:7, Lines:14)")|-||
+|[src/interfaces/IPermit.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IPermit.sol)|[14](#nowhere "(nSLOC:6, SLOC:14, Lines:20)")|-||
+|[src/interfaces/external/uni/IUniswapRouterV2.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/external/uni/IUniswapRouterV2.sol) [💰](#nowhere "Payable Functions")|[158](#nowhere "(nSLOC:27, SLOC:158, Lines:184)")|-||
+|Total (over 10 files):| [334](#nowhere "(nSLOC:195, SLOC:334, Lines:448)") |[18.97%](#nowhere "Hit:11 / Total:58")|
 
 
-## Out of scope
-
-- IPermit.sol
-- IOwned.sol
-- IPausable.sol
-- IUniswapRouterV2.sol
-- IWETH.sol
-- Owned.sol
-- OwnedUpgradeable.sol
-- Pool2SingleAssetCompounder.sol
-- RewardsClaimer.sol
-- StrategyBase.sol
+## External imports
+* **openzeppelin-contracts-upgradeable/proxy/utils/Initializable.sol**
+  * ~~[src/utils/OwnedUpgradeable.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/OwnedUpgradeable.sol)~~
+* **openzeppelin-contracts-upgradeable/security/PausableUpgradeable.sol**
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+  * [src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol)
+* **openzeppelin-contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol**
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+  * [src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol)
+* **openzeppelin-contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol**
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+  * ~~[src/vault/strategy/RewardsClaimer.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/RewardsClaimer.sol)~~
+* **openzeppelin-contracts-upgradeable/token/ERC20/extensions/ERC4626Upgradeable.sol**
+  * [src/utils/MultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardStaking.sol)
+  * [src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol)
+  * ~~[src/vault/strategy/Pool2SingleAssetCompounder.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/Pool2SingleAssetCompounder.sol)~~
+* **openzeppelin-contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol**
+  * [src/interfaces/IMultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/IMultiRewardEscrow.sol)
+  * [src/interfaces/vault/IERC4626.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/interfaces/vault/IERC4626.sol)
+  * [src/utils/MultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardEscrow.sol)
+  * [src/vault/adapter/yearn/IYearn.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/yearn/IYearn.sol)
+* **openzeppelin-contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol**
+  * [src/utils/MultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardEscrow.sol)
+  * [src/utils/MultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardStaking.sol)
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+  * [src/vault/VaultController.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/VaultController.sol)
+  * [src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol)
+  * ~~[src/vault/strategy/RewardsClaimer.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/strategy/RewardsClaimer.sol)~~
+* **openzeppelin-contracts-upgradeable/utils/math/MathUpgradeable.sol**
+  * [src/utils/MultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardStaking.sol)
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+  * [src/vault/adapter/abstracts/AdapterBase.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/adapter/abstracts/AdapterBase.sol)
+* **openzeppelin-contracts/proxy/Clones.sol**
+  * [src/vault/CloneFactory.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/CloneFactory.sol)
+* **openzeppelin-contracts/token/ERC20/extensions/IERC20Metadata.sol**
+  * [src/vault/Vault.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/vault/Vault.sol)
+* **openzeppelin-contracts/utils/math/Math.sol**
+  * [src/utils/MultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardEscrow.sol)
+* **solmate/utils/SafeCastLib.sol**
+  * [src/utils/MultiRewardEscrow.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardEscrow.sol)
+  * [src/utils/MultiRewardStaking.sol](https://github.com/code-423n4/2023-01-popcorn//blob/main/src/utils/MultiRewardStaking.sol)
 
 Some of these contracts depend on older utility contracts which is why this repo contains more than just these contracts. These dependencies have been audited previously.
 Additionally there are some wip sample strategies which might help to illustrate how strategies can be used in conjuction with adapters.
@@ -119,8 +157,7 @@ Additionally there are some wip sample strategies which might help to illustrate
 # Additional Context
 
 **Note:** The `AdapterBase.sol` still has a TODO to use a deterministic address for `feeRecipient`. As we didnt deploy this proxy yet on our target chains it remains a placeholder value for the moment. Once the proxy exists we will simply switch out the palceholder address.
-<br/>
-<br/>
+
 
 # Security
 There are multiple possible targets for attacks.
@@ -176,15 +213,14 @@ Additionally `creators` can send an initial deposit on vault/adapter creation to
 ```
 
 # Tests
-
+## Quickstart command
+`export ETH_RPC_URL="<your-eth-rpc-url>" && export POLYGON_RPC_URL="<your-polygon-rpc-url>" && rm -Rf 2023-01-popcorn || true && gc https://github.com/code-423n4/2023-01-popcorn.git -j8 --recurse-submodules && cd 2023-01-popcorn && echo -e "ETH_RPC_URL=$ETH_RPC_URL\nPOLYGON_RPC_URL=$POLYGON_RPC_URL" > .env && foundryup && forge install && yarn install && forge test --no-match-contract 'Abstract' --gas-report`
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) v16.16.0 (you may wish to use [nvm][1])
 -   [yarn](https://yarnpkg.com/)
 -   [foundry](https://github.com/foundry-rs/foundry)
 
-<br/>
-<br/>
 
 ## Installing Dependencies
 
