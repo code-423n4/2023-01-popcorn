@@ -33,13 +33,13 @@ The Vault Factory part consists of a mix of Registry and Execution contracts. Al
 -   **AdminProxy:** This contract owns any clone and most infrastructure contracts. Its used to make ownership transfers easy in case the **VaultController** should get updated. This contracts forwards almost all calls from the **VaultController**.
 
 **Note:** This system ensures that minimal user input is needed and executions are handled with valid inputs and in the correct order. The goal is to minimize human error and the attack surface. A lot of configurations for **Adapters** and **Strategies** is very protocol specific. These are therefore mainly handled in the implementations itself. **Adapters** should receive all there critical data from an on-chain registry of the underlying protocol. As its nearly impossible to tell otherwise if the passed in configuration is malicious. There is still a need for some kind of governance to ensure that only correct and safe **Templates** are added and dangerous assets get rejected. 
-![vaultInfraFlow](https://github.com/code-423n4/2023-01-popcorn//blob/main/vaultInfraFlow.PNG)
+![vaultInfraFlow](https://github.com/code-423n4/2023-01-popcorn/blob/main/vaultInfraFlow.PNG)
 ## Vault, Adapter & Strategy
 -   **Vault:** A simple ERC-4626 implementation which allows the creator to add various types of fees and interact with other protocols via any ERC-4626 compliant **Adapter**. Fees and **Adapter** can be changed by the creator after a ragequit period.
 -   **Adapter:** An immutable wrapper for existing contract to allow for ERC-4626 compatability. Optionally adapters can utilize a **Strategy** to perform various additional tasks besides simply depositing and withdrawing token from the wrapped protocol. PopcornDAO will collect management fees via these **Adapter**.
 -   **Strategy:** An arbitrary module to perform various tasks from compouding, leverage or simply forwarding rewards. Strategies can be attached to an **Adapter** to give it additionaly utility.
 
-![vaultFlow](https://github.com/code-423n4/2023-01-popcorn//blob/main/vaultFlow.PNG)
+![vaultFlow](https://github.com/code-423n4/2023-01-popcorn/blob/main/vaultFlow.PNG)
 
 ## Utility Contracts
 Additionally we included 2 utility contracts that are used alongside the vault system.
