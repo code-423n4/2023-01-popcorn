@@ -1,10 +1,9 @@
 # Popcorn DAO contest details
 - Total Prize Pool: $90,500 USDC
-  - HM awards: $63,750 USDC (Notion Field: Main Pool)
-  - QA report awards: $7,500 USDC (Notion Field: QA Pool, usually 10% of total award pool)
-  - Gas report awards: $3,750 USDC (Notion Field: Gas Pool, usually 5% of total award pool)
-  - Judge + presort awards: $15,000 USDC (Notion Field: Judge Fee)
-  - Scout awards: $500 USDC (this field doesn't exist in Notion yet, usually $500 USDC)
+  - HM awards: $63,750 USDC 
+  - QA report awards: $7,500 USDC 
+  - Gas report awards: $3,750 USDC 
+  - Judge + presort awards: $15,000 USDC 
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2023-01-popcorn-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
