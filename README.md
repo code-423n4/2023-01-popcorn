@@ -74,11 +74,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Starts January 31, 2023 20:00 UTC
 - Ends February 07, 2023 20:00 UTC
 
-## C4udit / Publicly Known Issues
+## Automated Findings / Publicly Known Issues
 
-The C4audit output for the contest can be found [here](add link to report) within an hour of contest opening.
+Automated findings output for the contest can be found [here](add link to report) within an hour of contest opening.
 
-*Note for C4 wardens: Anything included in the C4udit output is considered a publicly known issue and is ineligible for awards.*
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
 [ ⭐️ SPONSORS ADD INFO HERE ]
 
