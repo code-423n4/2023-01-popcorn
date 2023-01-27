@@ -1,0 +1,37 @@
+{
+  "name": "forge-template",
+  "author": "FrankieIsLost",
+  "version": "1.0.0",
+  "description": "A forge template",
+  "homepage": "https://github.com/FrankieIsLost/forge-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankieIsLost/forge-template.git"
+  },
+  "scripts": {
+    "prettier": "prettier --write 'src/**/*.sol'",
+    "prettier:list": "prettier --list-different 'src/**/*.sol'",
+    "prettier:check": "prettier --check 'src/**/*.sol'",
+    "solhint": "solhint --config ./.solhint.json 'src/**/*.sol' --fix",
+    "solhint:check": "solhint --config ./.solhint.json 'src/**/*.sol'",
+    "lint": "npm run prettier && npm run solhint",
+    "lint:check": "npm run prettier:check && npm run solhint:check"
+    
+  },
+  "devDependencies": {
+    "prettier": "2.5.1",
+    "prettier-plugin-solidity": "1.0.0-beta.19",
+    "solhint": "3.3.6",
+    "@openzeppelin/contracts": "4.8.0",
+    "openzeppelin-upgradeable": "npm:@openzeppelin/contracts-upgradeable@4.7.1",
+    "sinon": "14.0.0",
+    "solc-0.6.0": "npm:solc@0.6.0",
+    "solc-0.6.12": "npm:solc@0.6.12",
+    "solc-0.8.0": "npm:solc@0.8.0",
+    "solc-0.8.1": "npm:solc@0.8.1",
+    "solc-0.8.10": "npm:solc@0.8.10",
+    "solc-0.8.17": "npm:solc@0.8.17",
+    "solidity-shell": "0.1.0",
+    "surya": "0.4.5"
+  }
+}
