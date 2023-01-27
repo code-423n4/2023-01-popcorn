@@ -13,7 +13,8 @@
 
 # Overview
 
-This protocols goal is to make vault creation easy, safe and all without compromising on flexibility. It allows anyone to spin up their own Yearn in minutes. <br/>
+This protocols goal is to make vault creation easy, safe and all without compromising on flexibility. It allows anyone to spin up their own Yearn in minutes.
+
 **Vaults** can be created permissionlessly based on any underlying protocol and execute arbitrary strategies. 
 The factory uses only endorsed **Adapters** and **Strategies** with minimal user input to reduce complexity for a creator and ensure safety of the created clones. It gives vault creators a quick and easy way to spin up any **Vault** they need and end users the guarantee that the created **Vault** will be safe. For some more context checkout the [whitepaper](https://github.com/code-423n4/2023-01-popcorn//blob/main/WhitePaper.pdf)
 
@@ -182,7 +183,7 @@ There are multiple possible targets for attacks.
 - `Pause` vaults / adapters of other `creators`
 - Predeploy deterministic proxies on other chains
 
-Most of these attacks are only possible when the `VaultController` is misconfigured on deployment or its `owner` is compromised. The `owner` of `VaultController` should be a MultiSig which should make this process harder but nonetheless not impossible.<br/>
+Most of these attacks are only possible when the `VaultController` is misconfigured on deployment or its `owner` is compromised. The `owner` of `VaultController` should be a MultiSig which should make this process harder but nonetheless not impossible.
 
 ## Inflation Attack
 EIP-4626 is vulnerable to the so-called [inflation attacks](https://ethereum-magicians.org/t/address-eip-4626-inflation-attacks-with-virtual-shares-and-assets/12677). This attack results from the possibility to manipulate the exchange rate and front run a victim’s deposit when the vault has low liquidity volume.  A similiar issue that affects yearn is already known. See Finding 3, "Division rounding may affect issuance of shares" in [Yearn's ToB audit](https://github.com/yearn/yearn-security/blob/master/audits/20210719_ToB_yearn_vaultsv2/ToB_-_Yearn_Vault_v_2_Smart_Contracts_Audit_Report.pdf) for the details. In order to combat this `AdapterBase.sol` ignores gifted assets when calculating `totalAssets`. (To ensure correct functionality of rebasing tokens is the responsibility of the concrete `adapter`-implementations).
@@ -231,9 +232,6 @@ forge install
 
 yarn install
 ```
-
-<br/>
-<br/>
 
 ## Testing
 
