@@ -5,6 +5,7 @@ pragma solidity ^0.8.15;
 
 import {ERC4626Upgradeable, IERC20Upgradeable as IERC20, IERC20MetadataUpgradeable as IERC20Metadata, ERC20Upgradeable as ERC20} from "openzeppelin-contracts-upgradeable/token/ERC20/extensions/ERC4626Upgradeable.sol";
 import {SafeERC20Upgradeable as SafeERC20} from "openzeppelin-contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import {ReentrancyGuardUpgradeable} from "openzeppelin-contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 import {MathUpgradeable as Math} from "openzeppelin-contracts-upgradeable/utils/math/MathUpgradeable.sol";
 import {PausableUpgradeable} from "openzeppelin-contracts-upgradeable/security/PausableUpgradeable.sol";
 import {IStrategy} from "../../../interfaces/vault/IStrategy.sol";
@@ -27,6 +28,7 @@ abstract contract AdapterBase is
     ERC4626Upgradeable,
     PausableUpgradeable,
     OwnedUpgradeable,
+    ReentrancyGuardUpgradeable,
     EIP165,
     OnlyStrategy
 {
@@ -147,7 +149,7 @@ abstract contract AdapterBase is
         address receiver,
         uint256 assets,
         uint256 shares
-    ) internal virtual override {
+    ) internal nonReentrant virtual override {
         IERC20(asset()).safeTransferFrom(caller, address(this), assets);
 
         _protocolDeposit(assets, shares);
