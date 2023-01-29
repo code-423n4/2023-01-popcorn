@@ -151,10 +151,11 @@ abstract contract AdapterBase is
         uint256 shares
     ) internal nonReentrant virtual override {
         IERC20(asset()).safeTransferFrom(caller, address(this), assets);
-
+        
+        uint256 underlyingBalance_ = _underlyingBalance();
         _protocolDeposit(assets, shares);
         // Update the underlying balance to prevent inflation attacks
-        underlyingBalance = _underlyingBalance();
+        underlyingBalance += _underlyingBalance() - underlyingBalance_;
 
         _mint(receiver, shares);
 
@@ -218,9 +219,10 @@ abstract contract AdapterBase is
         }
 
         if (!paused()) {
+            uint256 underlyingBalance_ = _underlyingBalance();  
             _protocolWithdraw(assets, shares);
             // Update the underlying balance to prevent inflation attacks
-            underlyingBalance = _underlyingBalance();
+            underlyingBalance -= underlyingBalance_ - _underlyingBalance();
         }
 
         _burn(owner, shares);
