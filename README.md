@@ -10,6 +10,11 @@
 - Starts January 31, 2023 20:00 UTC
 - Ends February 07, 2023 20:00 UTC
 
+## Automated Findings / Publicly Known Issues
+
+Automated findings output for the contest can be found [here](https://gist.github.com/Picodes/b3c3bc8df01afc2b649534da8007af88) within an hour of contest opening.
+
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
 # Overview
 
