@@ -220,7 +220,7 @@ Additionally `creators` can send an initial deposit on vault/adapter creation to
 
 # Tests
 ## Quickstart command
-`export ETH_RPC_URL="<your-eth-rpc-url>" && export POLYGON_RPC_URL="<your-polygon-rpc-url>" && rm -Rf 2023-01-popcorn || true && gc https://github.com/code-423n4/2023-01-popcorn.git -j8 --recurse-submodules && cd 2023-01-popcorn && echo -e "ETH_RPC_URL=$ETH_RPC_URL\nPOLYGON_RPC_URL=$POLYGON_RPC_URL" > .env && foundryup && forge install && yarn install && forge test --no-match-contract 'Abstract' --gas-report`
+`export ETH_RPC_URL="<your-eth-rpc-url>" && export POLYGON_RPC_URL="<your-polygon-rpc-url>" && rm -Rf 2023-01-popcorn || true && git clone  https://github.com/code-423n4/2023-01-popcorn.git -j8 --recurse-submodules && cd 2023-01-popcorn && echo -e "ETH_RPC_URL=$ETH_RPC_URL\nPOLYGON_RPC_URL=$POLYGON_RPC_URL" > .env && foundryup && forge install && yarn install && forge test --no-match-contract 'Abstract' --gas-report`
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) v16.16.0 (you may wish to use [nvm][1])
