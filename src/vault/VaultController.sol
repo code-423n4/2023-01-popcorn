@@ -76,7 +76,7 @@ contract VaultController is Owned {
   event VaultDeployed(address indexed vault, address indexed staking, address indexed adapter);
 
   /**
-   * @notice Deploy a new Vault. Optionally with an Adapter and Staking. Caller must be owner.
+   * @notice Deploy a new Vault. Optionally with an Adapter and Staking. Caller must be allowed be the PermssionRegistry.
    * @param vaultData Vault init params.
    * @param adapterData Encoded adapter init data.
    * @param strategyData Encoded strategy init data.
@@ -178,7 +178,7 @@ contract VaultController is Owned {
     //////////////////////////////////////////////////////////////*/
 
   /**
-   * @notice Deploy a new Adapter with our without a strategy. Caller must be owner.
+   * @notice Deploy a new Adapter with our without a strategy. Caller must be allowed be the PermssionRegistry.
    * @param asset Asset which will be used by the adapter.
    * @param adapterData Encoded adapter init data.
    * @param strategyData Encoded strategy init data.
@@ -271,7 +271,7 @@ contract VaultController is Owned {
     //////////////////////////////////////////////////////////////*/
 
   /**
-   * @notice Deploy a new staking contract. Caller must be owner.
+   * @notice Deploy a new staking contract. Caller must be allowed be the PermssionRegistry.
    * @param asset The staking token for the new contract.
    * @dev Deploys `MultiRewardsStaking` based on the latest templateTemplateKey.
    */
