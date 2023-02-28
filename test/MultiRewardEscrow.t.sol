@@ -7,8 +7,9 @@ import { Math } from "openzeppelin-contracts/utils/math/Math.sol";
 import { MockERC20 } from "./utils/mocks/MockERC20.sol";
 import { MultiRewardEscrow, Escrow, IERC20 } from "../src/utils/MultiRewardEscrow.sol";
 import { SafeCastLib } from "solmate/utils/SafeCastLib.sol";
+import { TokenTester } from "token-tester/TokenTester.sol";
 
-contract MultiRewardEscrowTest is Test {
+contract MultiRewardEscrowTest is Test, TokenTester {
   using SafeCastLib for uint256;
 
   MockERC20 token1;
@@ -56,7 +57,17 @@ contract MultiRewardEscrowTest is Test {
                             LOCK LOGIC
     //////////////////////////////////////////////////////////////*/
 
-  function test__lock() public {
+  function test__lock() public usesERC20TokenTester {
+    // -----------------------------------------
+    // Overrides for token tester demo
+    iToken1 = IERC20(address(tokenTest));
+    deal(address(iToken1), alice, 10 ether);
+
+    vm.startPrank(alice);
+    (bool unused,) = address(iToken1).call(abi.encodeWithSignature("approve(address,uint256)", address(escrow), 10 ether));
+    vm.stopPrank();
+    // -----------------------------------------
+
     vm.startPrank(alice);
 
     vm.expectEmit(false, false, false, true, address(escrow));
@@ -76,7 +87,8 @@ contract MultiRewardEscrowTest is Test {
     bytes32[] memory aliceEscrowIds = escrow.getEscrowIdsByUser(alice);
     Escrow[] memory aliceEscrows = escrow.getEscrows(aliceEscrowIds);
 
-    assertEq(address(aliceEscrows[0].token), address(token1));
+    // assertEq(address(aliceEscrows[0].token), address(token1));
+    assertEq(address(aliceEscrows[0].token), address(iToken1));
     assertEq(uint256(aliceEscrows[0].start), aliceLockTime);
     assertEq(uint256(aliceEscrows[0].lastUpdateTime), aliceLockTime);
     assertEq(uint256(aliceEscrows[0].end), aliceLockTime + 100);
@@ -129,8 +141,20 @@ contract MultiRewardEscrowTest is Test {
     vm.stopPrank();
   }
 
-  function test__claim() public {
-    _lockFunds();
+  function test__claim_Escrow() public usesERC20TokenTester {
+    // _lockFunds();
+    // -----------------------------------------
+    // Overrides for token tester demo
+    vm.startPrank(alice);
+    iToken1 = IERC20(address(tokenTest));
+    deal(address(iToken1), alice, 10 ether);
+
+    (bool unused,) = address(iToken1).call(abi.encodeWithSignature("approve(address,uint256)", address(escrow), 10 ether));
+    escrow.lock(iToken1, bob, 10 ether, 10, 0);
+    escrow.lock(iToken2, bob, 10 ether, 100, 0);
+    vm.stopPrank();
+    // -----------------------------------------
+    
     vm.warp(block.timestamp + 10);
 
     bytes32[] memory bobEscrowIds = escrow.getEscrowIdsByUser(bob);
@@ -144,7 +168,7 @@ contract MultiRewardEscrowTest is Test {
     uint256 bobClaimTime = block.timestamp;
     escrow.claimRewards(bobEscrowIds);
 
-    assertEq(token1.balanceOf(bob), 10 ether);
+    assertEq(iToken1.balanceOf(bob), 10 ether);
     assertEq(token2.balanceOf(bob), 1 ether);
 
     Escrow[] memory bobEscrows = escrow.getEscrows(bobEscrowIds);

@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Token Tester Results</title>
+    <style>
+      /* Add some basic styling to the table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th {
+        text-align: left;
+        padding: 8px;
+        font-size: 1.2em;
+      }
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #bb9af7;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      /* Add some styling to the status column */
+      .subheader {
+        background-color: #2ac3de;
+        color: white;
+      }
+      .success {
+        color: #9ece6a;
+        font-size: 1.5em;
+      }
+      .failure {
+        color: #f7768e;
+        font-size: 1.5em;
+      }
+      body {
+        width: 66%;
+        text-align: center;
+        margin: 0 auto;
+        color: #1a1b26;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Token Tester Results</h1>
+    <table>
+      <tr>
+        <th>Test</th>
+        <th>Token</th>
+        <th>Status</th>
+      </tr>
+      
+      <tr>
+        <th class="subheader">test__claim_Escrow</th>
+        <th class="subheader"></th>
+        <th class="subheader"></th>
+      </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Proxied.sol">Proxied</a></td>
+        <td><span class="failure">❌</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ReturnsFalse.sol">ReturnsFalse</a></td>
+        <td><span class="failure">❌</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Approval.sol">Approval</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ApprovalToZero.sol">ApprovalToZero</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BaseERC20.sol">BaseERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BlockList.sol">BlockList</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Bytes32Metadata.sol">Bytes32Metadata</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/DaiPermit.sol">DaiPermit</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/HighDecimals.sol">HighDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/LowDecimals.sol">LowDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/MissingReturns.sol">MissingReturns</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/NoRevert.sol">NoRevert</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Pausable.sol">Pausable</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Reentrant.sol">Reentrant</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WETH.sol">WETH</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__claim_Escrow</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WeirdERC20.sol">WeirdERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+      <tr>
+        <th class="subheader">test__lock</th>
+        <th class="subheader"></th>
+        <th class="subheader"></th>
+      </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Proxied.sol">Proxied</a></td>
+        <td><span class="failure">❌</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ReturnsFalse.sol">ReturnsFalse</a></td>
+        <td><span class="failure">❌</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Approval.sol">Approval</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ApprovalToZero.sol">ApprovalToZero</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BaseERC20.sol">BaseERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BlockList.sol">BlockList</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Bytes32Metadata.sol">Bytes32Metadata</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/DaiPermit.sol">DaiPermit</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/HighDecimals.sol">HighDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/LowDecimals.sol">LowDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/MissingReturns.sol">MissingReturns</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/NoRevert.sol">NoRevert</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Pausable.sol">Pausable</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Reentrant.sol">Reentrant</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WETH.sol">WETH</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__lock</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WeirdERC20.sol">WeirdERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+      <tr>
+        <th class="subheader">test__metaData</th>
+        <th class="subheader"></th>
+        <th class="subheader"></th>
+      </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Bytes32Metadata.sol">Bytes32Metadata</a></td>
+        <td><span class="failure">❌</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Approval.sol">Approval</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ApprovalToZero.sol">ApprovalToZero</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BaseERC20.sol">BaseERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/BlockList.sol">BlockList</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/DaiPermit.sol">DaiPermit</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/HighDecimals.sol">HighDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/LowDecimals.sol">LowDecimals</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/MissingReturns.sol">MissingReturns</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/NoRevert.sol">NoRevert</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Pausable.sol">Pausable</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Proxied.sol">Proxied</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/Reentrant.sol">Reentrant</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/ReturnsFalse.sol">ReturnsFalse</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WETH.sol">WETH</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    <tr>
+        <td>test__metaData</td>
+        <td><a href="vscode://file/Users/briandang/code/2023-01-popcorn/lib/token-tester/lib/weird-erc20/src/WeirdERC20.sol">WeirdERC20</a></td>
+        <td><span class="success">✅</span></td>
+    </tr>
+
+    </table>
+  </body>
+</html>

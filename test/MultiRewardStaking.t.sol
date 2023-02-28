@@ -9,8 +9,10 @@ import { MockERC20 } from "./utils/mocks/MockERC20.sol";
 import { IMultiRewardEscrow } from "../src/interfaces/IMultiRewardEscrow.sol";
 import { MultiRewardStaking, IERC20 } from "../src/utils/MultiRewardStaking.sol";
 import { MultiRewardEscrow } from "../src/utils/MultiRewardEscrow.sol";
+import { IERC20 as foundryIERC20 } from "forge-std/interfaces/IERC20.sol";
+import { TokenTester } from "token-tester/TokenTester.sol";
 
-contract MultiRewardStakingTest is Test {
+contract MultiRewardStakingTest is Test, TokenTester {
   using SafeCastLib for uint256;
 
   MockERC20 stakingToken;
@@ -52,19 +54,22 @@ contract MultiRewardStakingTest is Test {
                             VIEW LOGIC
     //////////////////////////////////////////////////////////////*/
 
-  function test__metaData() public {
-    assertEq(staking.name(), "Staked Staking Token");
-    assertEq(staking.symbol(), "pst-STKN");
-    assertEq(staking.decimals(), stakingToken.decimals());
+  function test__metaData() public usesERC20TokenTester {
+    // Token Tester replaces `staking` token
+    // assertEq(staking.name(), "Staked Staking Token");
+    // assertEq(staking.symbol(), "pst-STKN");
+    // assertEq(staking.decimals(), stakingToken.decimals());
 
-    MockERC20 newStakingToken = new MockERC20("New Staking Token", "NSTKN", 6);
+    // Replace their mock token with `tokenTest` instead
+    // MockERC20 newStakingToken = new MockERC20("New Staking Token", "NSTKN", 6);
 
     MultiRewardStaking newStaking = new MultiRewardStaking();
-    newStaking.initialize(IERC20(address(newStakingToken)), IMultiRewardEscrow(address(escrow)), address(this));
+    newStaking.initialize(IERC20(address(tokenTest)), IMultiRewardEscrow(address(escrow)), address(this));
 
-    assertEq(newStaking.name(), "Staked New Staking Token");
-    assertEq(newStaking.symbol(), "pst-NSTKN");
-    assertEq(newStaking.decimals(), newStakingToken.decimals());
+    // Do not assert on hardcoded values
+    // assertEq(newStaking.name(), "Staked New Staking Token");
+    // assertEq(newStaking.symbol(), "pst-NSTKN");
+    assertEq(newStaking.decimals(), foundryIERC20(address(tokenTest)).decimals());
   }
 
   function test__getAllRewardsTokens() public {
