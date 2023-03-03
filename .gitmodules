@@ -9,3 +9,6 @@
 	path = lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
 	branch = v4.8.1
+[submodule "lib/token-tester"]
+	path = lib/token-tester
+	url = https://github.com/bespoken-tokens/token-tester
