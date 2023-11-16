@@ -1,0 +1,1748 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2023 / popcorn-jan31
+==============================================================
+
+[01/30/2023 16:37] itsmetechjay (pinned)
+👋 Hello and welcome to the contest channel for the $90,500 USDC **Popcorn** contest!
+
+📆 Contest opens Tuesday, 31 January 2023 20:00 (20:00 UTC) and runs through Tuesday, 07 February 2023 20:00 (20:00 UTC) (7 days).
+
+Please give a warm welcome to the Popcorn team, particularly @RedVeil, who will be available for questions either here in the channel or via DM.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2023-01-popcorn-contest
+
+{Embed}
+https://code4rena.com/contests/2023-01-popcorn-contest
+Code4rena Popcorn contest
+$90,500 USDC
+31 January 2023—7 February 2023
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/C4-banner-7C19B.png
+
+{Reactions}
+👋 (10) 👍 
+
+[01/30/2023 17:06] codingnamekiki
+:PU_pepeThinkBaguette:
+
+
+[01/30/2023 17:07] itsmetechjay
+Pinned a message.
+
+
+[01/30/2023 21:06] kartoonjoy (pinned)
+**REMINDER:** Using ChatGPT, GPT-3, or similar tools for contest submissions is prohibited, and will result in all of your contest submissions being ruled invalid. Additional penalties may also be applied at the discretion of judges and C4 staff.
+
+{Reactions}
+👍 
+
+[01/30/2023 21:06] kartoonjoy
+Pinned a message.
+
+
+[01/31/2023 20:21] thepicodes (pinned)
+**Automated Findings: ** https://gist.github.com/Picodes/b3c3bc8df01afc2b649534da8007af88
+
+{Reactions}
+thankyou (4) 
+
+[01/31/2023 20:22] itsmetechjay (pinned)
+Wardens, please note that the automated findings output has been posted and added to pinned posts. These are considered publicly known issues and are not eligible for awards.
+
+**Automated findings: **
+https://gist.github.com/Picodes/b3c3bc8df01afc2b649534da8007af88
+
+
+[01/31/2023 20:22] itsmetechjay
+Pinned a message.
+
+
+[01/31/2023 20:22] itsmetechjay
+Pinned a message.
+
+
+[01/31/2023 21:20] proxy1967
+Noob question: can we still submit the same issue that was found with the automated finding but it is a different instance that was not posted on the automated findings?
+
+
+[01/31/2023 21:48] kartoonjoy
+You should ask that outside of this channel (like maybe in the question or warden channel) since thats more general.
+
+
+[01/31/2023 22:18] proxy1967
+Ok mb thanks
+
+
+[01/31/2023 22:20] ermaniwe
+nice, no-code solution for web3 🙂 I've worked at one project that had huge no-code solution. Excepts its development took like 5-7 years 😄 
+The road to robust and user-friendly no-code product is hard, but in the end it helps to bring much more people in industry. GL to the devs and I hope they will make it
+
+{Reactions}
+👏 
+
+[01/31/2023 23:56] rebase3763
+Is it my setup or these failures are expected?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/Screen_Shot_2023-01-31_at_6.56.24_PM-3EE80.png
+
+
+[02/01/2023 01:05] illilli000
+expected. use `--no-match-contract 'Abstract'` like the readme says to
+
+
+[02/01/2023 01:08] rebase3763
+gotcha, I followed the readme and used `--no-match-contract 'Abstract'` though
+
+
+[02/01/2023 01:09] illilli000
+can you try the quickstart command?
+
+
+[02/01/2023 01:10] rebase3763
+I followed quick start command, the other tests are passing
+
+
+[02/01/2023 01:10] rebase3763
+```export ETH_RPC_URL="<my-url>" && export POLYGON_RPC_URL="my-url" 
+rm -Rf 2023-01-popcorn || true 
+git clone https://github.com/code-423n4/2023-01-popcorn.git -j8 --recurse-submodules 
+cd 2023-01-popcorn && echo -e "ETH_RPC_URL=$ETH_RPC_URL\nPOLYGON_RPC_URL=$POLYGON_RPC_URL" > .env 
+foundryup && forge install && yarn install
+forge test --no-match-contract 'Abstract' --gas-report```
+
+
+[02/01/2023 01:13] rebase3763
+```~/se/c/latest/2023-01-popcorn │ on main !1  forge test --match-path test/vault/integration/beefy/BeefyAdapter.t.sol  -vvvvv
+[⠔] Compiling...
+No files changed, compilation skipped
+2023-02-01T01:13:01.553813Z ERROR forge::runner: setUp failed reason="EvmError: Revert" contract=0x7fa9385be102ac3eac297483dd6233d62b3e1496
+
+Running 1 test for test/vault/integration/beefy/BeefyAdapter.t.sol:BeefyAdapterTest
+[FAIL. Reason: Setup failed: EvmError: Revert] setUp() (gas: 0)
+Traces:
+  [4014151] BeefyAdapterTest::setUp()
+    ├─ [0] VM::rpcUrl(polygon) [staticcall]```
+
+
+[02/01/2023 01:17] illilli000
+hmm, I'm seeing failures with the quickstart too, that I didn't see before. I see that the sponsor made some test changes - @RedVeil can you take a look at the failures?
+
+
+[02/01/2023 01:21] illilli000
+I just ran `forge test --no-match-contract 'Abstract'` again and got no failures. Perhaps it's an intermittent rpc issue?
+
+
+[02/01/2023 01:21] rebase3763
+possibly, thanks for checkin!
+
+{Reactions}
+👍 
+
+[02/01/2023 01:23] rebase3763
+if you're referring to my version of quick start, then switching `git gc` to `git clone` in the message above is on me, sorry for the confusion
+
+
+[02/01/2023 01:26] illilli000
+that was an error I made when updating the readme. It'll be fixed shortly
+
+{Reactions}
+thankyou (2) 
+
+[02/01/2023 09:01] 0xredveil
+just confirmed it on my build again and it seems to work just fine. But i understand from the conversation that it has been resolved? 🙂
+
+
+[02/01/2023 12:08] ch_301
+@RedVeil 
+What is the idea of this modifier? Is this  `permissionRegistry.endorsed(address(1))` will get a default value or the owner can update it?
+```
+  modifier canCreate() {
+    if (
+      permissionRegistry.endorsed(address(1))
+        ? !permissionRegistry.endorsed(msg.sender)
+        : permissionRegistry.rejected(msg.sender)
+    ) revert NotAllowed(msg.sender);
+    _;
+  }
+```
+
+
+[02/01/2023 12:10] 0xredveil
+Endorsement can only be changed by the owner. The idea here is that we can switch from a permission model of allowing specific addresses to rejecting addresses.
+
+
+[02/01/2023 12:11] 0xredveil
+The first turnary and the default requires the msg.sender to explicitly be added as an allowed creator
+
+
+[02/01/2023 12:11] 0xredveil
+while later we can switch this and allow anyone to create as long as they have not been explicitly rejected from creating
+
+
+[02/01/2023 12:14] ch_301
+OK, on **STAKING DEPLOYMENT LOGIC** 
+```
+@notice Deploy a new staking contract. Caller must be owner.
+```
+
+
+[02/01/2023 12:15] ch_301
+Why you don't use `onlyOwner` with `deployStaking()`?
+
+
+[02/01/2023 12:17] 0xredveil
+ah damn that natspec comment slipped through
+
+
+[02/01/2023 12:17] 0xredveil
+it should look at `canCreate` NOT `onlyOwner`
+
+
+[02/01/2023 12:18] ch_301
+Make sense now 👍
+
+{Reactions}
+👍 (2) 
+
+[02/01/2023 12:20] 0xredveil
+Gonna ask if its fine to update this comment to avoid further confusion. Thanks 🙂
+
+{Reactions}
+👍 
+
+[02/01/2023 13:12] cloudellie
+Hi all - quick note re: the above discussion between @Ch301 and @RedVeil. We're not going to make any updates to the natspec comment here even though it's clearly causing some confusion, in the interest of respecting our code freeze rules. 
+
+Would recommend though that all participants refer to the above discussion ^^ if you're also confused by the comment. 🙂
+
+{Reactions}
+👍 (4) 
+
+[02/02/2023 03:04] t.nero
+The attacks listed under Security section are considered known issues or something?
+
+
+[02/02/2023 06:08] 0xredveil
+No, they should rather help or give a starting idea of potential targets and how to exploit them. All of these things should be save but id hope to findout with this audit if this is really the case.
+
+
+[02/02/2023 06:08] 0xredveil
+Obviously there might be other vectors that I missed. I'd say think of it as a starting point to think about the security of the protocol
+
+
+[02/02/2023 07:26] t.nero
+Thanks for clarify. Not sure it's just me or anyone confused with this. Just wanted to confirm. 😅
+
+{Reactions}
+👍 (3) 
+
+[02/02/2023 14:41] trustminimised
+Yeah, I was going to ask about it if no one else had, so thanks for that!
+
+
+[02/02/2023 16:36] infamousdegen
+what does multiRewardEscrow do , Is it for storing the staking stratergy  rewards temporarily before it is being distributed
+
+
+[02/02/2023 16:59] 0xredveil
+Its an optional contract to escrow rewards from staking and pay them out over time. One could view it as a staking contract with linear distribution
+
+
+[02/02/2023 17:00] 0xredveil
+this allows someone to give out high apy on the staking side but limit market impact by smoothing out the actual amounts getting paid out
+
+
+[02/02/2023 18:42] d_auditor
+Hi @RedVeil. I'm sorry but the flow of the contracts is not really clear. If it is not too much to ask, from the contract that end users interact with, how does the contracts interest with each other
+
+
+[02/02/2023 19:28] 0xredveil
+No worries :). There are three different user types that can interact with it.
+
+
+[02/02/2023 19:28] 0xredveil
+Regular users will just interact with the vault to deposit and withdraw funds
+
+{Reactions}
+👍 
+
+[02/02/2023 19:29] 0xredveil
+Strategists csn create new templates via the DeploymentController
+
+{Reactions}
+👍 
+
+[02/02/2023 19:29] 0xredveil
+So they can later be cloned
+
+
+[02/02/2023 19:30] 0xredveil
+And creators can create Vaults, adapters and strategies via the vaultcontroller
+
+
+[02/02/2023 19:30] 0xredveil
+Does that make sense? Or does it answer the question?
+
+
+[02/02/2023 19:37] trustminimised
+Is this creators that are permitted by governance? Or governance itself? At a glance this doesn't seem to be permissionless?
+
+
+[02/02/2023 19:37] 0xredveil
+It's not per se
+
+
+[02/02/2023 19:37] 0xredveil
+But we can flip a switch to make it open to everyone that isn't specifically blacklisted
+
+
+[02/02/2023 19:39] trustminimised
+Alrighty. So for the purposes of thinking about the security model here for the contest, I should assume governance controls these VaultController vault/adapter/strategy deployments?
+
+
+[02/02/2023 23:41] d_auditor
+Perfectly. Everything lines up now. Thanks ✌️
+
+{Reactions}
+👍 
+
+[02/02/2023 23:42] 0xredveil
+Great! 🙂
+
+
+[02/02/2023 23:42] 0xredveil
+Sry for the late answer. It should be seen as an open permissionless system.
+
+
+[02/02/2023 23:43] 0xredveil
+The idea of the switch is mainly that we can slowly onboard some first users to test it out. Once we feel comfortable we would flip the switch and allow anyone to interact with it.
+
+
+[02/02/2023 23:44] 0xredveil
+At this point only explicitly denied addresses couldn't. As this is difficult to manage though the assumption should be thst after an initial rollout it's permissionless
+
+
+[02/03/2023 01:53] 0xtraub
+can you give an example of what beefyBooster would be? like maybe an example address
+
+
+[02/03/2023 10:35] ahmet5611
+PermissionRegistry is kinda over-engineered... if only one can be true of endorsed or rejected, couldn't they leave only one boolean that can be true for endorsed/rejected and false for the opposite? 😬
+
+
+[02/03/2023 10:46] illilli000
+if you have suggestions on how to make things more efficient, that'd be something you could flag as a QA or gas issue
+
+{Reactions}
+👍 (2) 
+
+[02/03/2023 10:53] 0xredveil
+the main idea is that we could switch from endorsement-only to open to everyone but rejected. Id be happy if we can make this simpler though
+
+
+[02/03/2023 10:54] 0xredveil
+there is one in the tests. On polygon using the stMATIC-MATIC vault. The booster here is: 0x69C28193185CFcd42D62690Db3767915872bC5EA
+
+{Reactions}
+👍 
+
+[02/03/2023 11:19] ahmet5611
+I got it, thanks.
+
+{Reactions}
+👍 
+
+[02/03/2023 13:35] 0xtraub
+A lot of aspects of this system seem over-engineered.
+
+
+[02/03/2023 13:59] 0xredveil
+Mind sharing those? Id be happy to simplify it
+
+
+[02/03/2023 14:00] 0xtraub
+what was the rationale behind the adminProxy? you've already defined all the signatures and interfaces for administration of admin functions but proxying it all through that contract just makes it harder to comb through all the abi encoding/decoding. Having VaultController itself be the owner and do all the calls makes more sense and simplifies significantly.
+
+
+[02/03/2023 15:41] dadekuma
+Hi! Is someone available for DM?
+
+
+[02/03/2023 15:53] peakbolt
+same, looking for someone to DM
+
+
+[02/03/2023 15:58] 0xtraub
+are rug vectors considered in scope @RedVeil? Rugs by users who create vaults/adapters not protocol admins
+
+
+[02/03/2023 16:11] 0xredveil
+The proxy calls make it indeed way harder. The rational for the adminProxy was about upgradeability. If the VaultController would be owner of all contracts and we would swap it out for a newer version we would need to transfer ownership for all contracts in the system. As these include vaults and adapters etc. This could be quite complex and annoying
+
+{Reactions}
+👍 
+
+[02/03/2023 16:11] 0xredveil
+With the adminproxy we only need to change the owner of the proxy
+
+
+[02/03/2023 16:11] 0xtraub
+that makes sense. fair point.
+
+
+[02/03/2023 16:11] 0xredveil
+Happy to hear that 🙂
+
+
+[02/03/2023 16:11] 0xtraub
+can I dm about potential finding
+
+
+[02/03/2023 16:12] 0xredveil
+And I'd love more feedback in that regard
+
+
+[02/03/2023 16:12] 0xredveil
+Absolutely
+
+
+[02/03/2023 16:16] 0xredveil
+Yes that's in scope for sure
+
+
+[02/03/2023 16:16] 0xtraub
+Dm'ed u with details
+
+{Reactions}
+👍 (2) 
+
+[02/03/2023 16:26] 0xredveil
+@DadeKuma @peakbolt dm'ed you
+
+{Reactions}
+👍 
+
+[02/03/2023 18:24] 0xwander
+@RedVeil dmed you
+
+{Reactions}
+👍 
+
+[02/03/2023 20:03] rebase3763
+@RedVeil  Question about https://github.com/code-423n4/2023-01-popcorn#security section, specifically the part `Nominate new owner of the adminProxy to change configurations or endorse malicious templates` which sounds like may be used as "inspiration" to explore potential targets. `AdminProxy` contract is in the scope, but being a proxy is not helpful outside of the context of `OwnedUpgradeable` which is outside of scope. Would be able to clarify?
+
+
+[02/03/2023 20:20] 0xredveil
+i saw it as someone changing it through the VaultController
+
+
+[02/03/2023 20:20] 0xredveil
+but even than they would need to be the owner
+
+
+[02/03/2023 20:20] rebase3763
+same question about in-scoped VaultController''s `pausing logic`
+
+
+[02/03/2023 20:20] 0xredveil
+Owned is simply the synthetix owned contract that has been around for ages
+
+
+[02/03/2023 20:21] rebase3763
+no question there, it is done through the vaultController
+
+
+[02/03/2023 20:22] 0xredveil
+so are your questions answered? or is there still smth? 🙂
+
+
+[02/03/2023 20:22] rebase3763
+maybe I can rephrase, is `pausing/unpausing` in the scope?
+
+
+[02/03/2023 20:24] rebase3763
+and are `ownership change`  through `nominateNewOwner` and `acceptOwnership` in the scope? I may be just reading it too literally 😉
+
+
+[02/03/2023 20:32] 0xredveil
+well pause on Owned contracts arent they are just dependencies from synthetix/oz
+
+
+[02/03/2023 20:32] 0xredveil
+but the usage in the protocol is certainly in scope
+
+
+[02/03/2023 20:32] 0xredveil
+so if i used paused wrong or missed smth there than thats deffo in scope
+
+
+[02/03/2023 20:35] rebase3763
+gotcha, that answered my question, thank you
+
+
+[02/03/2023 20:35] 0xredveil
+de nada
+
+
+[02/04/2023 01:05] gjaldon
+Hi @RedVeil  May I DM for questions?
+
+
+[02/04/2023 02:41] 0xredveil
+Absolutely
+
+
+[02/04/2023 09:24] comradektg
+Hey, @RedVeil , can I DM you for questions?
+
+
+[02/04/2023 11:01] beirao
+Do we agree that the ultimate goal of Popcorn is to allow anyone (without permission) to create Vaults, adapters and strategies? 
+Or have I misunderstood something ?  @RedVeil
+
+
+[02/04/2023 11:36] 0xredveil
+That is absolutely correct
+
+{Reactions}
+👍🏼 (3) 
+
+[02/04/2023 15:01] ali_shehab.
+Hi @RedVeil can I DM you?
+
+{Reactions}
+👍 
+
+[02/05/2023 08:42] 0xpathfindr
+In the PermissionRegistry, what are the characteristics of  a potentially unsafe asset. And could you provide an example of a beefy adapter.
+
+{Reactions}
+➕ 
+
+[02/05/2023 10:19] 0xpathfindr
+Anyone able to run slither on the repo?
+
+
+[02/05/2023 11:21] enational
+Yep
+
+
+[02/05/2023 11:23] enational
+You should to create slither.config.json
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/Screenshot_from_2023-02-05_14-22-20-1BCD0.png
+
+{Reactions}
+☝️ 
+
+[02/05/2023 11:44] malatrax
+@RedVeil May I dm you ?
+
+
+[02/05/2023 11:55] 0xpathfindr
+Sent you a dm.
+
+
+[02/05/2023 14:48] rebase3763
+@RedVeil dmed you
+
+{Reactions}
+👍 
+
+[02/05/2023 15:26] 0xredveil
+Absolutely
+
+
+[02/05/2023 15:27] 0xredveil
+I was thinking of erc777s or malicious erc20 that could be added to a staking contract
+
+
+[02/05/2023 15:27] 0xredveil
+But even in that case a user would still need to interact with the malicious token after claim
+
+
+[02/05/2023 15:27] 0xredveil
+So I currently don't see that beeing used too much
+
+
+[02/05/2023 17:19] doublesharp
+I added `solc_remaps` so that it would work against an individual contract as well.
+
+```js
+{
+  "filter_paths": "(mocks/|test/|@openzeppelin/|openzeppelin-upgradeable/)",
+  "solc_remaps": "forge-std/=lib/forge-std/src/ openzeppelin-contracts-upgradeable/=node_modules/openzeppelin-upgradeable/ openzeppelin-contracts/=node_modules/@openzeppelin/contracts/ solmate/=lib/solmate/src/"
+}
+```
+
+{Reactions}
+4739_Skeletor (3) 
+
+[02/05/2023 18:18] zinc42#1431
+@RedVeil  sent you a dm.
+
+{Reactions}
+👍 
+
+[02/05/2023 18:53] supernovahs
+@RedVeil Dmed
+
+{Reactions}
+👍 
+
+[02/06/2023 07:22] immeas
+@RedVeil sent a dm as well 🙂
+
+{Reactions}
+👍 
+
+[02/06/2023 08:55] 0xpathfindr
+Thanks for sharing this
+
+{Reactions}
+boolish 
+
+[02/06/2023 13:11] ladboy233
+https://code4rena.com/contests/2023-01-popcorn-contest
+
+{Embed}
+https://code4rena.com/contests/2023-01-popcorn-contest
+Code4rena Popcorn contest
+$90,500 USDC
+31 January 2023—7 February 2023
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/77bf2841-1a8a-4ae1-837c-6e868e38a6c0-F8985
+
+
+[02/06/2023 13:11] ladboy233
+The documented Dangerous Attacks, GRIEVING ATTACKS, INFLATION ATTACK are considerred known issue and are out of scope, right?
+
+
+[02/06/2023 13:16] pfapostol
+not, it was answered before
+
+
+[02/06/2023 14:09] 0xbtk
+https://discord.com/channels/810916927919620096/1069656997982646302/1070586422840524885
+
+
+[02/06/2023 15:01] dewaxindo
+hi, does `erc4626.sol` in lib/solmate/src/mixins/ERC4626.sol out of scope?
+
+
+[02/06/2023 15:06] 0xredveil
+Yes
+
+
+[02/06/2023 15:06] 0xredveil
+It's out of scope
+
+
+[02/06/2023 15:06] dewaxindo
+okay thanks
+
+
+[02/06/2023 18:18] danyams#9668
+Anyone available for a dm?
+
+
+[02/06/2023 20:00] 0xredveil
+Yeah tried to dm you
+
+
+[02/06/2023 20:19] jat4100
+@RedVeil I sent you a dm
+
+{Reactions}
+👍 
+
+[02/06/2023 20:45] Rvi#5470
+@RedVeil dmed you
+
+{Reactions}
+👍 
+
+[02/07/2023 10:23] ladboy233
+What is the address of BeefyBooster?
+
+
+[02/07/2023 10:34] ladboy233
+@RedVeil
+
+
+[02/07/2023 10:34] ladboy233
+Thanks.
+
+
+[02/07/2023 10:40] 0xredveil
+you find it in the test config for beefy
+
+
+[02/07/2023 10:40] 0xredveil
+it depends on the beefy vault
+
+
+[02/07/2023 10:51] ladboy233
+Yes.
+
+
+[02/07/2023 10:51] ladboy233
+Yeap this one
+
+
+[02/07/2023 10:51] ladboy233
+https://polygonscan.com/address/0x69C28193185CFcd42D62690Db3767915872bC5EA#code
+
+{Embed}
+https://polygonscan.com/address/0x69C28193185CFcd42D62690Db3767915872bC5EA
+BeefyLaunchpool | Address 0x69C28193185CFcd42D62690Db3767915872bC5E...
+The Contract Address 0x69C28193185CFcd42D62690Db3767915872bC5EA page allows users to view the source code, transactions, balances, and analytics for the contract address. Users can also interact and make transactions to the contract directly on PolygonScan.
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/PolygonScan-logo-circle-6FDB5.jpg
+
+
+[02/07/2023 10:51] ladboy233
+Found it.
+
+
+[02/07/2023 10:51] ladboy233
+Thanks.
+
+
+[02/07/2023 14:35] 0xredveil
+de nada!
+
+
+[02/07/2023 15:08] d_auditor
+Hey @RedVeil. What is the reward staking model
+
+
+[02/07/2023 15:09] d_auditor
+Is the user rewards dependent solely on time or amount invested?
+
+
+[02/07/2023 16:11] 0xredveil
+Correct
+
+
+[02/07/2023 16:11] 0xredveil
+People can add arbitrary rewards
+
+
+[02/07/2023 16:11] 0xredveil
+Than define how many token they want to pay out to the stakers per second
+
+
+[02/07/2023 16:12] 0xredveil
+If only one user stakes they get all of it otherwise its shared between all stakers based on their stake amount
+
+
+[02/07/2023 16:12] 0xredveil
+But its always linear
+
+
+[02/07/2023 16:12] 0xredveil
+If you want to adjust the rate you can do it via admin function but than it will again pay them out linearly
+
+
+[02/07/2023 16:13] 0xredveil
+The other option is to set rewardsSpeed to 0
+
+
+[02/07/2023 16:13] 0xredveil
+Than all gets paid out instantly
+
+
+[02/07/2023 16:46] acegawd
+Dmed you @RedVeil
+
+{Reactions}
+👍 
+
+[02/07/2023 19:51] ladboy233
+Sadly
+
+
+[02/07/2023 19:51] ladboy233
+I did this contest in such a hurry and does not look into the YEARN integration carefully.
+
+
+[02/07/2023 19:51] ladboy233
+Good project.
+
+{Reactions}
+thankyou (3) 
+
+[02/07/2023 19:52] ladboy233
+🍿
+
+{Reactions}
+🍿 (2) 🙂 
+
+[02/07/2023 19:52] 0xredveil
+Very happy to hear that! 🙂
+
+
+[02/07/2023 19:54] 0xredveil
+@here with the contest ending soon I just wanted to thank all of you for the questions, suggestions and all the hard work you put into the contest! 🙂 thanks a lot for your contribution and I'm very excited to see what you discovered!
+
+{Reactions}
+❤️ (13) 🫡 (12) 
+
+[02/07/2023 19:54] 0xredveil
+Let's see how much I gotta fix 😄
+
+{Reactions}
+😆 (4) cheers_badger (4) praisethesun (4) 
+
+[02/07/2023 19:56] saksham#7993
+You were great with answering all the questions!
+
+{Reactions}
+👆 (7) 
+
+[02/07/2023 20:02] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens The **Popcorn** contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a gardener if you have questions along the way!
+
+{Reactions}
+💪 (25) C4Keycap 
+
+[02/07/2023 20:29] malatrax
+Glad to have done my first contest attempt on this project :)
+But time management felt hard with such a large codebase 😳 
+I took too much time trying to find "all" the ins & outs of the issues I found and verifying that my PoC was working as intended.
+This led to some neglect in shaping my submitted findings (I hadn't carefully read the submission policy until an hour before closing time 🤡) + not submitting one finding 😔 👆
+
+{Reactions}
+empathy 
+
+[02/07/2023 20:35] aitechcoder
+I feel you... Got one medium finding I couldn't submit, because I couldn't get the PoC done in time 😦  Maybe should have just submitted it without PoC. Got it working 15 mins after deadline...
+
+{Reactions}
+😔 (3) empathy 
+
+[02/07/2023 20:44] Rvi#5470
+Damn same here
+I just read it 😂
+
+{Reactions}
+😂 (3) 
+
+[02/08/2023 02:13] devabdee
+> Got one medium finding 
+
+Brother always make sure to never expose your findings until the contest results. Especially with clear words.
+
+{Reactions}
+👆 (4) 
+
+[02/08/2023 02:29] 0xtraub
+I had a lot of fun on this contest. Had my best results ever finding a high but it still feels too good to be true and I think it'll get downgraded. Really looking forward to the full result
+
+{Reactions}
+👏 (3) 
+
+[02/08/2023 02:35] heuss
+😂
+
+
+[02/08/2023 03:20] CRYP70#8985
+Thanks to the devs and staff for hosting! 😁
+
+{Reactions}
+hi5 (7) 
+
+[02/08/2023 04:07] apvlki
+started late but it was a lot of fun for my first attempt ❤️
+
+{Reactions}
+🔥 (3) 
+
+[02/08/2023 05:03] 0xtraub
+Shout-out to @RedVeil and rest of the team for constantly being around to answer everyone's questions
+
+{Reactions}
+💯 (8) 🎉 ♥️ (2) 
+
+[02/08/2023 05:19] chaduke3730
+@RedVeilThanks a lot !
+
+{Reactions}
+👏 
+
+[02/08/2023 11:13] cloudellie
+Would encourage you to post this in #🙌high-fives as well! 🙂
+
+{Reactions}
+🔥 (2) 
+
+[02/08/2023 14:00] 0xpathfindr
+Hey, dm'd you
+
+{Reactions}
+🔥 
+
+[02/08/2023 17:17] manikantanynala97
+next code4arena contest
+
+
+[02/08/2023 17:17] manikantanynala97
+?
+
+
+[02/09/2023 10:18] praise95
+i believe probably before this week runs out
+
+
+[02/09/2023 11:16] manikantanynala97
+oh I see
+
+
+[02/10/2023 01:40] chaduke3730
+two are upcoming?
+
+
+[02/10/2023 03:06] birdy0219
+They're Vs contests
+
+
+[02/10/2023 03:13] chaduke3730
+i see
+
+
+[02/10/2023 04:20] lukejohn_
+Anybody has a good audit report to share?
+
+
+[02/10/2023 13:33] beirao
+what does that mean ? Only KYC contest ?
+
+
+[02/10/2023 22:54] birdy0219
+You need to be certified+ & backstage+ 
+The contest is held between 3-5 top wardens of a given criteria, usually top ranked for a contest or leaderboard
+
+{Reactions}
+👍 (2) 
+
+[02/11/2023 08:17] heuss
+Do we know when we will get the results ?
+
+
+[02/11/2023 10:27] devabdee
+~2 months maybe
+
+{Reactions}
+👍 (5) 😔 
+
+[02/13/2023 14:57] lsdan
+Hopefully faster than that. Presort will be completed tomorrow.
+
+{Reactions}
+🔥 (15) 
+
+[02/13/2023 16:02] heuss
+whats presort ?
+
+{Reactions}
+👆 
+
+[02/13/2023 16:23] devabdee
+LFG!!
+
+
+[02/13/2023 21:08] ladboy233
+LFG！！
+
+
+[02/14/2023 01:20] chaduke3730
+cannot wait
+
+
+[02/14/2023 01:47] 0xtraub
+@Heuss same
+
+
+[02/14/2023 03:27] CRYP70#8985
+https://tenor.com/view/yes-yas-excited-baby-cheering-gif-12101861
+
+{Embed}
+https://tenor.com/view/yes-yas-excited-baby-cheering-gif-12101861
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/yes-yas-1C3D3.png
+
+
+[02/14/2023 22:21] ladboy233
+👀👀👀
+
+{Reactions}
+👀 (6) 
+
+[02/14/2023 22:37] hunter_w3b
+🤓
+
+{Reactions}
+👀 (3) 
+
+[02/15/2023 13:40] tamayonft
+How can start auditing guys? I'm warsen right now
+
+
+[02/15/2023 19:41] praise95
+Invest your time in researching about smart contract security https://discord.com/channels/810916927919620096/1073325409451651172, learn how to write a good report (H/M, QA, gas optimisations),  lookout for contests on https://discord.com/channels/810916927919620096/810929015509483554
+
+{Embed}
+https://discord.com/channels/810916927919620096/1073325409451651172,
+Discord - A New Way to Chat with Friends & Communities
+Discord is the easiest way to communicate over voice, video, and text.  Chat, hang out, and stay close with your friends and communities.
+
+
+[02/16/2023 09:21] 0xsurena
+https://discord.com/channels/810916927919620096/1073325409451651172
+
+
+[02/19/2023 00:32] tamayonft
+Thanks
+
+
+[02/19/2023 00:32] tamayonft
+Question guys sorry if this is no the channel
+
+
+[02/19/2023 00:32] tamayonft
+Everyone is moving to foundry?
+
+
+[02/19/2023 00:43] praise95
+yes, i guess so..  it is faster
+
+
+[02/19/2023 02:11] gjaldon
+Hi LSDan. Hope you don't mind me asking, but do you think results would likely be out by end of Feb?
+
+
+[02/20/2023 12:58] lsdan
+I'd guess first week of March, but depends on how fast the team can compile the issues.
+
+{Reactions}
+👍 (3) 🙏 
+
+[02/21/2023 01:40] gjaldon
+Awesome! Thanks a lot! 🙏
+
+
+[02/21/2023 02:18] gjaldon
+Were there a lot of issues on this?
+
+
+[02/21/2023 12:33] lsdan
+Final judging is starting today so all the issues should be finalized by Monday night. It's against policy to talk about the contest results before they're made public so no comment on number of issues.
+
+{Reactions}
+🔥 (8) ✅ (3) Stonks_up (2) 
+
+[02/21/2023 13:10] dadekuma
+LFG!
+
+
+[02/21/2023 13:13] saksham#7993
+How much time does it take approx after final judging?
+
+
+[02/21/2023 13:25] lsdan
+The C4 team is better positioned to estimate that. I think it depends a lot on their workload
+
+{Reactions}
+C4Keycap (6) 
+
+[02/22/2023 10:30] heuss
+Do you guys think we will receive the awards before the 6 march ?
+
+
+[02/22/2023 13:57] gjaldon
+Thanks a lot, Dan 🙏🏼 I understand you’re unable to disclose the number of issues at this time
+
+
+[02/27/2023 11:48] heuss
+👁️ 👁️
+
+{Reactions}
+👀 (16) 👁️ (4) 🥹 (2) 
+
+[02/27/2023 17:34] 0xtraub
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/7cn3ux-FE564.png
+
+{Reactions}
+👀 (22) chefskiss (7) 
+
+[03/02/2023 09:13] enational
+When approximately will be results?
+
+{Reactions}
+😂 (7) discoball (3) 😭 (6) 👁️ (4) 
+
+[03/02/2023 15:28] beirao
+Sir... when result plz ? :() I need to pay my bills 🫠 😂
+
+{Reactions}
+😂 (20) 🥲 (5) 😭 (2) 
+
+[03/02/2023 17:15] 0xtraub
+This crowd is chomping at the bit for these results lol
+
+{Reactions}
+😂 (6) 
+
+[03/04/2023 17:04] ustas.eth
+Hey Dan, any news? :4739_Skeletor:
+
+
+[03/04/2023 17:10] lsdan
+Judging is complete. All that remains is the calculations
+
+{Reactions}
+🙏 (12) 🔥 (12) 🎉 (8) 🫡 (5) 🚀 (12) 
+
+[03/04/2023 21:11] ladboy233
+:chefskiss:
+
+{Reactions}
+👀 (5) 
+
+[03/04/2023 21:16] mert_eren#2527
+when can we see results?
+
+{Reactions}
+😂 (3) 
+
+[03/05/2023 16:47] xyzbtchunt
+soon
+
+{Reactions}
+👀 (6) 
+
+[03/06/2023 00:47] y1cunhui
+🕵️‍♂️
+
+{Reactions}
+🥱 (5) 
+
+[03/06/2023 16:12] mgf15
+https://tenor.com/view/curious-say-when-thinking-gif-12521449
+
+{Embed}
+https://tenor.com/view/curious-say-when-thinking-gif-12521449
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/curious-say-29EC7.png
+
+{Reactions}
+👀 (9) 
+
+[03/06/2023 17:45] 0xtraub
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/EP55K7VWoAAEzmY-91322.jpg
+
+{Reactions}
+😂 (3) 
+
+[03/06/2023 17:47] 0xsurena
+😂😂😂😂
+
+
+[03/06/2023 20:03] hunter_w3b
+:hi5:
+
+
+[03/07/2023 09:29] xyzbtchunt
+https://tenor.com/view/confused-face-gif-24004933
+
+{Embed}
+https://tenor.com/view/confused-face-gif-24004933
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/confused-face-F1AEE.png
+
+
+[03/07/2023 13:52] chaduke3730
+it will be worth the waiting
+
+
+[03/07/2023 13:52] chaduke3730
+(I found if I am not waiting for the bus ,then for sth else)
+
+
+[03/07/2023 14:27] viktor_cortess
+Every time I come here to check the results I think: if there are results already, but without me😀
+
+{Reactions}
+😂 (10) 
+
+[03/07/2023 14:52] y1cunhui
+The same....I have almost forgot what the protocol is and what I have submitted:4739_Skeletor:
+
+
+[03/07/2023 17:34] 0xsurena
+how are your bills? 😁
+
+{Reactions}
+🤣 (8) 
+
+[03/07/2023 18:01] beirao
+Macron wants my house. But np, told him to calm down because the popcorn results are coming soon. 
+He gives me 2 more days 🙂
+
+{Reactions}
+😁 (25) 
+
+[03/08/2023 08:06] viktor_cortess
+The only good thing is that we don't have girlfriends and we don't need money to buy gifts on March 8
+
+{Reactions}
+😂 
+
+[03/08/2023 08:20] 0xpathfindr
+Lol who buys gifts on International Womens Day ...
+
+
+[03/08/2023 08:21] 0xpathfindr
+Unless you live in     Albania, Bosnia and Herzegovina, Bulgaria, North Macedonia - In that case its mothers day
+
+
+[03/08/2023 08:22] 0xsurena
+but my girlfriends are waiting for me 👀 👀 👀
+
+{Reactions}
+👀 (2) 
+
+[03/08/2023 10:35] 0xsorrynotsorry
+Guys, just consider keeping the channel in professionalism. Contest channels are the interface of us to the sponsors. Consider utilizing #😃chat channel for fun. Thank you.
+
+{Reactions}
+🫡 (12) 👆 (12) 👍 (3) thankyou (3) 
+
+[03/08/2023 18:44] zhuxket
+The result arrived via a pull request in the C4 repo
+
+
+[03/08/2023 18:52] zhuxket
+https://github.com/code-423n4/code423n4.com/pull/8028
+
+{Embed}
+https://github.com/code-423n4/code423n4.com/pull/8028
+Update Leaderboard - March 8 by liveactionllama · Pull Request #802...
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/8028-0170E
+
+{Reactions}
+👍 (10) ✅ 
+
+[03/08/2023 19:28] 0xtraub
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/rs_300x300-160413102055-300-Chris-Pratt-Pa-1B383.png
+
+
+[03/08/2023 19:53] beirao
+34 Mediums and 14 Highs I understand now why you were excited.
+
+{Reactions}
+peepoeyes (5) 
+
+[03/08/2023 20:03] dadekuma
+@gjaldon congratulations for that solo high!
+
+{Reactions}
+👌🏼 (5) 💪🏼 (5) 🔥 (5) 
+
+[03/08/2023 20:17] heuss
+where do you guys see that ?
+
+
+[03/08/2023 20:22] beirao
+https://github.com/code-423n4/code423n4.com/pull/8028/commits/4e24100577120be3519130648364693ced0ea68b
+
+{Embed}
+https://github.com/code-423n4/code423n4.com/pull/8028/commits/4e24100577120be3519130648364693ced0ea68b
+Update Leaderboard - March 8 by liveactionllama · Pull Request #802...
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/98446738-1A1F9
+
+
+[03/08/2023 20:27] gjaldon
+@DadeKuma thank you ser! 😁 How can you tell it was a solo?
+
+
+[03/08/2023 20:28] dadekuma
+search for H-09, you were the only one to report that 🥇
+
+{Reactions}
+🙏🏼 (3) 
+
+[03/08/2023 20:30] gjaldon
+Nice2! This is the best news for me since I started C4 😁🙏🏼🎉
+
+{Reactions}
+💪🏼 (4) 👏 (2) 
+
+[03/08/2023 20:30] 0xtraub
+same here. So close to 4-figs but a personal best still rlly happy with the results.
+
+{Reactions}
+🔥 (4) 👏 
+
+[03/08/2023 20:31] gjaldon
+Congrats @0xTraub @DadeKuma and to everyone else who got findings! 🫡🔥
+
+{Reactions}
+💪🏼 (5) 
+
+[03/08/2023 20:31] 0xtraub
+congrats to you dude some big findings very impressive.
+
+{Reactions}
+🫡 (2) 🙏🏼 
+
+[03/08/2023 20:46] chaduke3730
+congrats to all!
+
+
+[03/08/2023 20:47] chaduke3730
+Great performance to many!
+
+
+[03/08/2023 20:47] dec3ntraliz3d
+Congrats to all the superstars !!
+
+
+[03/08/2023 20:48] chaduke3730
+@gjaldonNice finding!
+
+{Reactions}
+🙏🏼 (3) 
+
+[03/08/2023 20:54] viktor_cortess
+My first medium and 4 bucks. Seems like moving up from Low and NC won’t be so impressive😀
+
+{Reactions}
+👏 
+
+[03/08/2023 21:05] 0xtraub
+hey man you made $4. How many people out there are saying "man I should get into security" and never do it. you're making infinity times more than the thousands of those guys. dont sell yourself short. I hit my first ever high this time and even though I didnt get the payout I wanted im still extremely happy to see improvement
+
+{Reactions}
+👍 (12) hi5 (2) 🫡 
+
+[03/08/2023 22:07] itsmetechjay
+:code4rena:  💸 🎉 Awards for **Popcorn**:
+
+$8,268.34 USDC » @rvierdiiev 
+$6,380.37 USDC » @gjaldon 
+$4,342.77 USDC » @bin2chen 
+$3,503.38 USDC » @hansfriese 
+$2,263.70 USDC » @Ruhum 
+$2,246.27 USDC » @0xNazgul 
+$1,935.78 USDC » @peakbolt 
+$1,689.18 USDC » @ulqiorra 
+$1,646.35 USDC » @0xBeirao 
+$1,624.75 USDC » @rbserver 
+$1,572.32 USDC » @koxuan  
+$1,543.97 USDC » @0xWeiss 
+$1,523.66 USDC » @0xdeadbeef0x 
+$1,511.67 USDC » @chaduke 
+$1,430.08 USDC » @7siech 
+$1,413.59 USDC » @Ch301 
+$1,330.24 USDC » @c3phas 
+$1,197.00 USDC » @waldenyan20 
+$1,178.59 USDC » @0xMirce 
+$1,163.03 USDC » @cccz 
+$1,142.87 USDC » @fs0c 
+$1,116.84 USDC » @KingNFT 
+$1,099.23 USDC » @imare 
+$1,023.26 USDC » @ReyAdmirado
+$975.59 USDC » KIntern_NA (@TrungOre, @duc, @Trumpero)
+$957.20 USDC » @DadeKuma 
+$931.95 USDC » @joestakey 
+$894.30 USDC » @0xNineDec 
+$892.67 USDC » @0xTraub 
+$758.80 USDC » @mookim 
+$745.02 USDC » @0Kage 
+$716.50 USDC » @0xRobocop 
+$714.30 USDC » @ast3ros 
+$678.82 USDC » @eierina 
+$609.17 USDC » @immeas 
+$562.23 USDC » @Deivitto 
+$557.65 USDC » @doublesharp 
+$467.36 USDC » @IllIllI 
+$450.02 USDC » @eccentricexit 
+$398.57 USDC » @0xladboy | Sparkware 
+$390.22 USDC » @thecatking 
+$384.79 USDC » @Rolezn 
+$384.79 USDC » @0xSmartContract 
+$375.62 USDC » @lukris02 
+$366.09 USDC » @aashar 
+$345.36 USDC » @minhtrng 
+$320.08 USDC » @Breeje 
+$319.58 USDC » @btk 
+$308.29 USDC » @ustas 
+$305.80 USDC » @chrisdior4 
+$305.80 USDC » @Sathish9098 
+$305.80 USDC » @0xAgro 
+$255.11 USDC » @code-cipher 
+$239.38 USDC » @peanuts 
+$221.66 USDC » @hashminer0725 
+$211.48 USDC » @0xjuicer 
+$202.03 USDC » @CRYP70 
+$197.94 USDC » @GreedyGoblin 
+$185.24 USDC » @Lirios 
+$170.01 USDC » @mert_eren 
+$161.59 USDC » @csanuragjain 
+$158.69 USDC » @Kumpa 
+$158.08 USDC » @georgits 
+$147.60 USDC » @jasonxiale 
+$146.05 USDC » @masa 
+$122.61 USDC » @comradeKtg 
+$122.61 USDC » @pwnforce 
+$122.61 USDC » @Ada 
+$122.61 USDC » @okkothejawa 
+$109.47 USDC » @Kenshin 
+$105.30 USDC » @arialblack14 
+$105.30 USDC » @Dewaxindo 
+$105.30 USDC » @Diana 
+$105.30 USDC » @cryptostellar5 
+$105.30 USDC » @descharre
+$94.72 USDC » @nadin 
+$92.58 USDC » @0x52 
+$90.40 USDC » @supernova 
+$76.87 USDC » @critical-or-high 
+$69.82 USDC » @saneryee 
+$69.82 USDC » @Pheonix 
+$69.82 USDC » @Polaris_tow 
+$69.82 USDC » @eyexploit 
+$69.82 USDC » @Noam Yakov 
+$69.82 USDC » @Kiki 
+$69.82 USDC » @0xackerman 
+$69.82 USDC » @atharvasama 
+$69.82 USDC » @Madalad 
+$69.82 USDC » @0xdaydream 
+$69.38 USDC » @yellowBirdy 
+$62.44 USDC » @ayeslick 
+$57.50 USDC » @Nyx 
+$54.35 USDC » UdarTeam (@AhmeT, @tourist)
+$54.35 USDC » @RaymondFam 
+$50.41 USDC » @Malatrax
+
+{Reactions}
+👍 (8) 🔥 (4) 🥂 (2) 
+
+[03/08/2023 22:07] itsmetechjay
+$49.76 USDC » @savi0ur 
+$49.76 USDC » @Qeew 
+$44.64 USDC » @bauer6009 
+$44.05 USDC » @fyvgsk 
+$43.40 USDC » @rvi0x 
+$40.09 USDC » @y1cunhui.eth 
+$40.09 USDC » @0xpathfindr 
+$40.09 USDC » @SadBase 
+$40.06 USDC » @ICP 
+$39.21 USDC » @Walter 
+$36.63 USDC » @apvlki 
+$35.48 USDC » @olegthegoat 
+$35.48 USDC » @climber2002 
+$35.48 USDC » @seeu 
+$35.48 USDC » @41i3xn 
+$35.48 USDC » @rebase 
+$35.48 USDC » @hagrid 
+$35.48 USDC » @praise 
+$35.48 USDC » @chandkommanaboyina 
+$35.48 USDC » @yosuke 
+$35.48 USDC » scokaf (@Scoon, @jauvany)
+$35.48 USDC » @Inspectah 
+$35.48 USDC » @Cryptor 
+$35.48 USDC » @2997ms 
+$35.48 USDC » @adeolu 
+$35.48 USDC » @0x3b 
+$35.48 USDC » @bug_squ4sh 
+$35.48 USDC » @iceBear 
+$35.48 USDC » @simon135 
+$35.48 USDC » @SkyWalkerMan 
+$35.48 USDC » @ermaniwe 
+$35.48 USDC » @larsson 
+$35.48 USDC » @shark 
+$35.48 USDC » Guild_3 (@David_, amarachiugwu, @Elendu Ifeanyi, @oluwatosin_serah)
+$35.48 USDC » @H0
+$35.48 USDC » @Kaysoft 
+$35.48 USDC » @Bnke 
+$35.48 USDC » @matrix_0wl 
+$35.48 USDC » @codetilda 
+$35.48 USDC » @dharma09 
+$35.48 USDC » @merlin 
+$35.48 USDC » @tnevler 
+$35.48 USDC » @Mukund 
+$35.48 USDC » @DevABDee 
+$35.48 USDC » SleepingBugs (@Deivitto, @0xLovesleep)
+$35.48 USDC » @ethernomad 
+$35.48 USDC » @Kaiziron 
+$35.48 USDC » @sorryNotsorry 
+$35.48 USDC » @cryptonue 
+$35.48 USDC » @tsvetanovv 
+$35.48 USDC » @sayan 
+$35.48 USDC » @slowfi 
+$35.48 USDC » @Awesome 
+$35.48 USDC » @Deekshith99 
+$35.48 USDC » @ddimitrov22 
+$35.48 USDC » @3dgeville 
+$35.48 USDC » @Udsen 
+$35.48 USDC » @gkrastenov 
+$35.48 USDC » @JDeryl.cap 
+$35.48 USDC » @dec3ntraliz3d 
+$35.48 USDC » @yongskiws 
+$35.48 USDC » @Deathstore 
+$35.48 USDC » @luxartvinsec 
+$35.48 USDC » DevTimSch
+$23.45 USDC » @Josiah 
+$14.93 USDC » Hawkeye (@0xwags, @0xmint)
+$14.28 USDC » @Blockian 
+$14.28 USDC » @MyFDsYours 
+$14.28 USDC » @giovannidisiena 
+$4.61 USDC » @orion 
+$4.61 USDC » @Krace 
+$4.58 USDC » @Viktor_Cortess 
+$3.57 USDC » @0xRajkumar 
+$1.15 USDC » @mgf15 
+
+🏁 Findings summary
+---------------------------
+High risk findings: 101 total, 12 unique
+Med risk findings: 167 total, 35 unique
+Gas reports: 22
+QA reports: 125
+
+Awards will be distributed on Polygon within the next week. Congratulations, everyone! 💸 💸 💸
+
+*If you participated in this contest and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+❤️‍🔥 (8) thisisfine 
+
+[03/08/2023 22:09] dewaxindo
+Yay my first >$100 🚀
+
+{Reactions}
+🎉 (18) 👏 (3) 
+
+[03/08/2023 22:11] 0xweiss
+Nice got 4 figs
+
+{Reactions}
+🎉 (13) 
+
+[03/08/2023 22:31] 0xtraub
+Nice. I was hoping for 4 figs but I'll take a personal best
+
+{Reactions}
+hi5 (7) 
+
+[03/08/2023 22:36] 0xweiss
+Yep, nice work man!
+
+
+[03/08/2023 23:14] 0xtraub
+Thnx man. I'm on my way. I'll get there
+
+
+[03/08/2023 23:21] ladboy233
+😂🥲
+
+
+[03/08/2023 23:22] janestebans
+Any idea where I can find the report? Would love to see the findings I missed.
+
+
+[03/08/2023 23:38] gjaldon
+Report's not out yet. There will be an announcement once it's out. Really looking forward to reading it too
+
+{Reactions}
+👍 (3) 😅 ☝️ 
+
+[03/08/2023 23:41] gjaldon
+Haha seriously @0xTraub ?! 😅 😂 🤣
+
+{Reactions}
+😂 (4) 
+
+[03/08/2023 23:42] 0xrobocop
+Congrats to all the winners!
+
+
+[03/08/2023 23:42] 0xtraub
+i thought that was the pointer finger not the middle finger my bad lol.
+
+{Reactions}
+🤣 (5) 
+
+[03/08/2023 23:48] gjaldon
+Is it ok to share/promote a tweet related to the contest here in the contest channel? 😅
+
+
+[03/09/2023 00:10] Aramas#0972
+have DMd you 🙂
+
+{Reactions}
+🙏🏼 (3) 
+
+[03/09/2023 01:16] devabdee
+Alhumdulilah 🙂❤️‍🔥
+Congrats Everyone 👏
+
+{Reactions}
+🙏🏼 (8) 🎉 (10) hi5 (5) 
+
+[03/09/2023 12:53] praise95
+wow, my first 35$ :hi5:
+
+{Reactions}
+👏 (18) hi5 (11) 
+
+[03/09/2023 15:26] sathish9098kumar
+😂😂😂
+
+
+[03/09/2023 15:27] sathish9098kumar
+Wow 305$
+
+
+[03/09/2023 15:27] 0xhacksmithh
+@0xladboy | Sparkware One silly question, are u fan of ParaBoy, When ever i read your name Paraboy just come to my mind
+
+
+[03/09/2023 15:28] 0xhacksmithh
+May be that because i play lot of pubg
+
+
+[03/09/2023 15:28] ladboy233
+Emm I never heard of it. I will check "Paraboy" out though.
+
+
+[03/09/2023 15:28] ladboy233
+:chefskiss:
+
+
+[03/09/2023 15:29] 0xhacksmithh
+where r u from?
+
+
+[03/09/2023 15:30] 0xhacksmithh
+sry guys, i know this is not a perfect group for this type conversation. I apologise for that
+
+
+[03/09/2023 15:59] ladboy233
+I am happy to move this conservation to dm
+
+{Reactions}
+🥹 (2) 👍🏻 
+
+[03/09/2023 15:59] ladboy233
+:hi5: :C4Keycap: :chefskiss:
+
+
+[03/09/2023 17:48] mgf15
+https://tenor.com/view/honest-word-its-honest-work-it-aint-much-it-aint-much-but-its-honest-work-gif-13763573
+
+{Embed}
+https://tenor.com/view/honest-word-its-honest-work-it-aint-much-it-aint-much-but-its-honest-work-gif-13763573
+it ain't much, but it's honest work.
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/honest-word-its-honest-work-158B0.png
+
+{Reactions}
+🔥 (11) 💜 (8) 
+
+[03/09/2023 17:48] mgf15
+:chefskiss:  just my first 1$
+
+{Reactions}
+🫶🏾 
+
+[03/09/2023 18:58] 3dgeville#0311
+My first finding 😄
+
+{Reactions}
+🔥 (8) hi5 (2) 
+
+[03/11/2023 14:03] 0xfps
+@gjaldon the man 🫡.
+
+{Reactions}
+🙏🏼 (2) 🫡 (2) 
+
+[03/11/2023 16:13] gjaldon
+Thanks ser 🙏🏼🫡
+
+{Reactions}
+🫂 (3) 
+
+[03/13/2023 11:06] y1cunhui
+On which chain will the reward be distributed?
+
+
+[03/13/2023 11:07] y1cunhui
+Sorry I checked the announcement, it's on polygon
+
+
+[03/15/2023 06:41] 0x3b
+when will be the low rewards sent out? or are they have been sent out already?
+
+
+[03/15/2023 15:37] 0xbtk
+already sent
+
+
+[03/16/2023 05:39] 0x3b
+@btk thanks mate, I was just stupid, Imported USDT and waited for the tokens to increase, thinking the prices were in USDT   XD
+
+
+[03/30/2023 19:41] 0xtraub
+when will the report be released?
+
+
+[04/11/2023 03:40] 0xtraub
+when is the report gonna be published? its been a long time since the results were released
+
+{Reactions}
+👍🏼 (3) 
+
+[04/27/2023 21:26] 0xtraub
+i guess never?
+
+{Reactions}
+😂 (6) 
+
+[08/04/2023 10:49] mgf15
+when ?
+
+
+[09/14/2023 20:24] mgf15
+today is the day
+
+
+[09/14/2023 20:33] itsmetechjay
+https://code4rena.com/reports/2023-01-popcorn
+
+{Embed}
+https://code4rena.com/reports/2023-01-popcorn
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-Q1-2023 - popcorn-jan31 [1069656997982646302].txt_Files/c4-og-banner-963C4.png
+
+{Reactions}
+🔥 
+
+==============================================================
+Exported 302 message(s)
+==============================================================
